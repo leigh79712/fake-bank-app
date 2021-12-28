@@ -33,8 +33,8 @@ const Footer = () => {
         `}
       >
         {Links.map((link) => (
-          <li>
-            <Link href={link.url} key={link.name}>
+          <li key={link.name}>
+            <Link href={link.url}>
               <a
                 css={css`
                   font-size: 1.6rem;
