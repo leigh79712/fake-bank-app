@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
+import { useState } from "react";
 import { css } from "@emotion/react";
-import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/images/logo.png";
@@ -13,21 +13,22 @@ const Links = [
 
 const Header = () => {
   const [opacity, setOpacity] = useState(1);
-  const mouseIn = (event) => {
-    setOpacity(0.5);
-    event.target.style.opacity = 1;
-  };
-  const mouseOut = (event) => {
-    setOpacity(1);
 
-    event.target.style.opacity = null;
+  const mouseEnter = (e) => {
+    e.target.style.opacity = 1;
+    setOpacity(0.5);
+  };
+
+  const mouseOut = (e) => {
+    e.target.style.opacity = null;
+    setOpacity(1);
   };
 
   return (
     <header
       css={css`
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
         height: 9rem;
         padding: 0 6rem;
@@ -44,8 +45,8 @@ const Header = () => {
             transition: all 0.3s;
             opacity: ${opacity};
           `}
-          onMouseEnter={mouseIn}
-          onMouseLeave={mouseOut}
+          onMouseEnter={mouseEnter}
+          onMouseOut={mouseOut}
         />
       </a>
       <ul
@@ -68,42 +69,124 @@ const Header = () => {
                   font-size: 1.7rem;
                   font-weight: 400;
                   color: inherit;
-                  cursor: pointer;
                   text-decoration: none;
                   display: block;
+                  cursor: pointer;
                   transition: all 0.3s;
                   opacity: ${opacity};
                 `}
-                onMouseEnter={mouseIn}
-                onMouseLeave={mouseOut}
+                onMouseEnter={mouseEnter}
+                onMouseOut={mouseOut}
               >
                 {link.name}
               </a>
             </Link>
           </li>
         ))}
+      </ul>
+      <ul
+        css={css`
+          display: flex;
+          align-items: center;
+          list-style: none;
+        `}
+      >
         <li
           css={css`
-            margin-left: 4rem;
+            margin-left: 2rem;
           `}
         >
-          <Link href="/open-account">
+          <Link href="/login">
             <a
               css={css`
-                font-size: 1.7rem;
+                font-size: 1rem;
                 font-weight: 400;
-                color: #222;
-                cursor: pointer;
-                background-color: #5ec576;
-                padding: 0.8rem 2.5rem;
-                border-radius: 3rem;
+                color: inherit;
+                text-decoration: none;
+                display: block;
                 transition: all 0.3s;
+                cursor: pointer;
                 opacity: ${opacity};
               `}
-              onMouseEnter={mouseIn}
-              onMouseLeave={mouseOut}
+              onMouseEnter={mouseEnter}
+              onMouseOut={mouseOut}
             >
-              Open account
+              Login
+            </a>
+          </Link>
+        </li>
+        <li
+          css={css`
+            margin-left: 2rem;
+          `}
+        >
+          <Link href="/register">
+            <a
+              css={css`
+                font-size: 1rem;
+                font-weight: 400;
+                color: inherit;
+                text-decoration: none;
+                display: block;
+                transition: all 0.3s;
+                cursor: pointer;
+                opacity: ${opacity};
+                background-color: #2ec4b6;
+                padding: 0.5em;
+                border-radius: 5px;
+              `}
+              onMouseEnter={mouseEnter}
+              onMouseOut={mouseOut}
+            >
+              Register
+            </a>
+          </Link>
+        </li>
+        <li
+          css={css`
+            margin-left: 2rem;
+          `}
+        >
+          <Link href="">
+            <a
+              css={css`
+                font-size: 1rem;
+                font-weight: 400;
+                color: inherit;
+                text-decoration: none;
+                display: block;
+                transition: all 0.3s;
+                cursor: pointer;
+                opacity: ${opacity};
+              `}
+              onMouseEnter={mouseEnter}
+              onMouseOut={mouseOut}
+            >
+              language
+            </a>
+          </Link>
+        </li>
+        <li
+          css={css`
+            margin-left: 2rem;
+          `}
+        >
+          <Link href="">
+            <a
+              css={css`
+                font-size: 1rem;
+                font-weight: 400;
+                color: inherit;
+                text-decoration: none;
+                display: block;
+                transition: all 0.3s;
+                cursor: pointer;
+                opacity: ${opacity};
+              `}
+              onMouseEnter={mouseEnter}
+              onMouseOut={mouseOut}
+            >
+              ☀︎
             </a>
           </Link>
         </li>
