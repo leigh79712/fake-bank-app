@@ -2,13 +2,15 @@
   "name": "fake-bank-app",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server/app.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
+    "@koa/router": "^10.1.1",
+    "koa": "^2.13.4",
     "next": "12.0.7",
     "normalize.css": "^8.0.1",
     "react": "17.0.2",
