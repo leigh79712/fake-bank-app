@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/images/logo.png";
+import ThemeButton from "./ThemeButton";
 
 const Links = [
   { name: "Features", url: "/features" },
@@ -171,24 +172,7 @@ const Header = () => {
             margin-left: 2rem;
           `}
         >
-          <Link href="">
-            <a
-              css={css`
-                font-size: 1rem;
-                font-weight: 400;
-                color: inherit;
-                text-decoration: none;
-                display: block;
-                transition: all 0.3s;
-                cursor: pointer;
-                opacity: ${opacity};
-              `}
-              onMouseEnter={mouseEnter}
-              onMouseOut={mouseOut}
-            >
-              ☀︎
-            </a>
-          </Link>
+          <ThemeButton />
         </li>
       </ul>
     </header>
