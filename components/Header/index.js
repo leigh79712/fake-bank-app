@@ -45,8 +45,8 @@ const Header = ({ dark, switchTheme }) => {
         <Image
           src={logo}
           alt="logo"
-          height={50}
-          width={160}
+          height={60}
+          width={130}
           css={css`
             transition: all 0.3s;
             opacity: ${opacity};
@@ -131,7 +131,7 @@ const Header = ({ dark, switchTheme }) => {
               css={css`
                 font-size: 1rem;
                 font-weight: 400;
-                color: inherit;
+                color: #fff;
                 text-decoration: none;
                 display: block;
                 transition: all 0.3s;

@@ -2,7 +2,7 @@
 import { css } from "@emotion/react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../public/images/icon.png";
+import logo from "../../public/images/icon-light.png";
 
 const Links = [
   { name: "About", url: "/about" },
@@ -19,7 +19,7 @@ const Footer = () => {
     <footer
       css={css`
         padding: 10rem 3rem;
-        background-color: #37383d;
+        background-color: #fff;
         text-align: center;
       `}
     >
@@ -38,7 +38,7 @@ const Footer = () => {
               <a
                 css={css`
                   font-size: 1.6rem;
-                  color: #eee;
+                  color: #37383d;
                   text-decoration: none;
                   cursor: pointer;
                 `}
@@ -49,7 +49,7 @@ const Footer = () => {
           </li>
         ))}
       </ul>
-      <Image src={logo} alt="logo" width={50} height={50} />
+      <Image src={logo} alt="logo" width={130} height={130} />
       <p
         css={css`
           font-size: 1.4rem;
@@ -58,7 +58,7 @@ const Footer = () => {
           margin-top: 5rem;
         `}
       >
-        © Copyright by Jonas Schmedtmann. Use for learning or your portfolio.
+        © Copyright by Jie Lin Yang and Jerry Tsai.
       </p>
     </footer>
   );
