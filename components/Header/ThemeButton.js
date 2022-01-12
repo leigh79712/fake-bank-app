@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useContext } from "react";
-import { ThemeContext } from "hooks/useDark";
+import { GlobalContext } from "hooks/useGlobal";
 import Sun from "public/images/icons/sun.svg";
 import Moon from "public/images/icons/moon.svg";
 
 const ThemeButton = () => {
-  const { dark, switchTheme } = useContext(ThemeContext);
+  const { dark, switchTheme } = useContext(GlobalContext);
 
   return (
     <div

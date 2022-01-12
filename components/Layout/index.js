@@ -1,16 +1,16 @@
-import { useDark, ThemeContext } from "hooks/useDark";
+import { useGlobal, GlobalContext } from "hooks/useGlobal";
 import Header from "../Header";
 import Footer from "../Footer";
 
 const Layout = ({ children }) => {
-  const { dark, switchTheme } = useDark();
+  const { dark, switchTheme } = useGlobal();
 
   return (
-    <ThemeContext.Provider value={{ dark, switchTheme }}>
+    <GlobalContext.Provider value={{ dark, switchTheme }}>
       <Header />
       {children}
       <Footer />
-    </ThemeContext.Provider>
+    </GlobalContext.Provider>
   );
 };
 
