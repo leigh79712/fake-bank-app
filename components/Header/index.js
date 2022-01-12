@@ -1,19 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { useState } from "react";
-import { css } from "@emotion/react";
+import { css, useTheme } from "@emotion/react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/images/logo.png";
 import ThemeButton from "./ThemeButton";
+import Languages from "./Languages";
+import { useRouter } from "next/router";
+import Content from "./Content.json";
 
-const Links = [
-  { name: "Features", url: "/features" },
-  { name: "Operations", url: "/operations" },
-  { name: "Testimonials", url: "/testimonials" },
-];
-
-const Header = () => {
+const Header = ({ dark, switchTheme }) => {
   const [opacity, setOpacity] = useState(1);
+  const router = useRouter();
+  const theme = useTheme();
+  const { links, login, register } = Content[router.locale];
 
   const mouseEnter = (e) => {
     e.target.style.opacity = 1;
@@ -34,6 +34,11 @@ const Header = () => {
         height: 9rem;
         padding: 0 6rem;
         z-index: 100;
+        background-color: ${theme.background};
+        color: ${theme.color};
+        a {
+          color: ${theme.color};
+        }
       `}
     >
       <a>
@@ -57,7 +62,7 @@ const Header = () => {
           list-style: none;
         `}
       >
-        {Links.map((link) => (
+        {links.map((link) => (
           <li
             key={link.name}
             css={css`
@@ -112,7 +117,7 @@ const Header = () => {
               onMouseEnter={mouseEnter}
               onMouseOut={mouseOut}
             >
-              Login
+              {login}
             </a>
           </Link>
         </li>
@@ -139,7 +144,7 @@ const Header = () => {
               onMouseEnter={mouseEnter}
               onMouseOut={mouseOut}
             >
-              Register
+              {register}
             </a>
           </Link>
         </li>
@@ -148,31 +153,14 @@ const Header = () => {
             margin-left: 2rem;
           `}
         >
-          <Link href="">
-            <a
-              css={css`
-                font-size: 1rem;
-                font-weight: 400;
-                color: inherit;
-                text-decoration: none;
-                display: block;
-                transition: all 0.3s;
-                cursor: pointer;
-                opacity: ${opacity};
-              `}
-              onMouseEnter={mouseEnter}
-              onMouseOut={mouseOut}
-            >
-              language
-            </a>
-          </Link>
+          <Languages />
         </li>
         <li
           css={css`
             margin-left: 2rem;
           `}
         >
-          <ThemeButton />
+          <ThemeButton dark={dark} switchTheme={switchTheme} />
         </li>
       </ul>
     </header>

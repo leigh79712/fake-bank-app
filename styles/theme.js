@@ -3,4 +3,4 @@ export const lightTheme = {
   background: "white",
 };
 
-export const darkTheme = { color: "white", background: "back" };
+export const darkTheme = { color: "white", background: "black" };

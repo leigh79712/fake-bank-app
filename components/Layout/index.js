@@ -1,16 +1,19 @@
-import { useGlobal, GlobalContext } from "hooks/useGlobal";
+import { useState } from "react";
+import { ThemeProvider } from "@emotion/react";
 import Header from "../Header";
 import Footer from "../Footer";
+import { lightTheme, darkTheme } from "styles/theme";
 
 const Layout = ({ children }) => {
-  const { dark, switchTheme } = useGlobal();
+  const [dark, setDark] = useState(false);
+  const switchTheme = () => setDark(!dark);
 
   return (
-    <GlobalContext.Provider value={{ dark, switchTheme }}>
-      <Header />
+    <ThemeProvider theme={dark ? darkTheme : lightTheme}>
+      <Header dark={dark} switchTheme={switchTheme} />
       {children}
       <Footer />
-    </GlobalContext.Provider>
+    </ThemeProvider>
   );
 };
 
