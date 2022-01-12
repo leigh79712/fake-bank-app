@@ -1,0 +1,20 @@
+{
+  "en-US": {
+    "links": [
+      { "name": "Test1", "url": "/test1" },
+      { "name": "Test2", "url": "/test2" },
+      { "name": "Test3", "url": "/test3" }
+    ],
+    "login": "Login",
+    "register": "Register"
+  },
+  "zh-TW": {
+    "links": [
+      { "name": "測試1", "url": "/test1" },
+      { "name": "測試2", "url": "/test2" },
+      { "name": "測試3", "url": "/test3" }
+    ],
+    "login": "登入",
+    "register": "註冊"
+  }
+}
