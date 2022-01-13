@@ -3,7 +3,7 @@ import { useState } from "react";
 import { css, useTheme } from "@emotion/react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../public/images/logo.png";
+import logo from "../../public/images/logo-light.png";
 import ThemeButton from "./ThemeButton";
 import Languages from "./Languages";
 import { useRouter } from "next/router";
