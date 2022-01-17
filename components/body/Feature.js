@@ -26,6 +26,8 @@ const Feature = () => {
           display: grid;
           grid-template-columns: 4fr 4fr;
           grid-gap: 3em;
+          justify-items: center;
+          align-items: center;
         `}
       >
         <div>
