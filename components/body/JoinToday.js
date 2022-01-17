@@ -7,7 +7,7 @@ const JoinToday = () => {
   return (
     <div
       css={css`
-        margin: 4em 0;
+        margin: 6em 0;
       `}
     >
       <SectionHeader>Do your banking where and when you like</SectionHeader>
