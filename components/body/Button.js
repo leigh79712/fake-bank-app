@@ -11,7 +11,9 @@ const Button = (props) => {
         border-radius: 20px;
         border: none;
         padding: 1em 2em;
+        cursor: pointer;
       `}
+      {...props}
     >
       {props.children}
     </button>
