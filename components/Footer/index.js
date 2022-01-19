@@ -19,7 +19,6 @@ const Footer = () => {
     <footer
       css={css`
         padding: 10rem 3rem;
-        background-color: #fff;
         text-align: center;
       `}
     >
@@ -38,7 +37,6 @@ const Footer = () => {
               <a
                 css={css`
                   font-size: 1.6rem;
-                  color: #37383d;
                   text-decoration: none;
                   cursor: pointer;
                 `}
@@ -53,7 +51,6 @@ const Footer = () => {
       <p
         css={css`
           font-size: 1.4rem;
-          color: #aaa;
           text-align: center;
           margin-top: 5rem;
         `}

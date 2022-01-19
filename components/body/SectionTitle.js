@@ -3,17 +3,22 @@ import React, { useState } from "react";
 import { css } from "@emotion/react";
 
 const SectionTitle = (props) => {
-  <div
-    css={css`
-      font-size: 1.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: var(--color-primary);
-      margin-bottom: 1rem;
-    `}
-  >
-    props.children
-  </div>;
+  return (
+    <>
+      <div
+        css={css`
+          font-size: 1.5rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: #2ec4b6;
+          margin: 2rem;
+          text-align: center;
+        `}
+      >
+        {props.children}
+      </div>
+    </>
+  );
 };
 
 export default SectionTitle;

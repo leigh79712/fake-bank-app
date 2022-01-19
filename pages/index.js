@@ -1,11 +1,16 @@
+import JoinToday from "components/body/JoinToday";
+import Operation from "components/body/operation";
 import Banner from "../components/body/Banner";
-import Layout from "../components/Layout";
+import Feature from "../components/body/Feature";
 
 const Index = () => {
   return (
-    <Layout>
+    <>
       <Banner></Banner>
-    </Layout>
+      <Feature></Feature>
+      <Operation></Operation>
+      <JoinToday></JoinToday>
+    </>
   );
 };
 
