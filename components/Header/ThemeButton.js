@@ -10,7 +10,7 @@ const ThemeButton = ({ dark, switchTheme }) => (
     `}
     onClick={switchTheme}
   >
-    {dark ? <Sun /> : <Moon />}
+    {dark === "white" ? <Sun /> : <Moon />}
   </div>
 );
 

@@ -34,7 +34,6 @@ const Header = ({ dark, switchTheme }) => {
         height: 9rem;
         padding: 0 6rem;
         z-index: 100;
-        background-color: ${theme.background};
         color: ${theme.color};
         a {
           color: ${theme.color};
@@ -160,7 +159,7 @@ const Header = ({ dark, switchTheme }) => {
             margin-left: 2rem;
           `}
         >
-          <ThemeButton dark={dark} switchTheme={switchTheme} />
+          <ThemeButton dark={theme.color} switchTheme={switchTheme} />
         </li>
       </ul>
     </header>
