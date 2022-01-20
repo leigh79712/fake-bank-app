@@ -32,7 +32,6 @@ const Banner = () => {
             css={css`
               font-size: 5.5rem;
               line-height: 1.35;
-              color: #444;
             `}
           >
             When banking meets minimalist
@@ -41,7 +40,6 @@ const Banner = () => {
             css={css`
               font-size: 2.4rem;
               font-weight: 500;
-              color: #444;
             `}
           >
             Make your life easier
