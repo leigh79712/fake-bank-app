@@ -13,6 +13,8 @@ module.exports = async (range) => {
     });
 
     const { data } = res;
-    console.log(data);
-  } catch (error) {}
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };
