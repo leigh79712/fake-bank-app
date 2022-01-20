@@ -9,7 +9,7 @@ import Languages from "./Languages";
 import { useRouter } from "next/router";
 import Content from "./Content.json";
 
-const Header = ({ dark, switchTheme }) => {
+const Header = ({ themeState, toggleTheme }) => {
   const [opacity, setOpacity] = useState(1);
   const router = useRouter();
   const theme = useTheme();
@@ -159,7 +159,7 @@ const Header = ({ dark, switchTheme }) => {
             margin-left: 2rem;
           `}
         >
-          <ThemeButton dark={theme.color} switchTheme={switchTheme} />
+          <ThemeButton themeState={themeState} toggleTheme={toggleTheme} />
         </li>
       </ul>
     </header>

@@ -5,12 +5,12 @@ import Feature from "../components/body/Feature";
 
 const Index = () => {
   return (
-    <>
+    <main>
       <Banner></Banner>
       <Feature></Feature>
       <Operation></Operation>
       <JoinToday></JoinToday>
-    </>
+    </main>
   );
 };
 

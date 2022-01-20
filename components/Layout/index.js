@@ -1,9 +1,9 @@
 import Header from "../Header";
 import Footer from "../Footer";
 
-const Layout = ({ switchTheme, children }) => (
+const Layout = ({ themeState, toggleTheme, children }) => (
   <>
-    <Header switchTheme={switchTheme} />
+    <Header themeState={themeState} toggleTheme={toggleTheme} />
     {children}
     <Footer />
   </>
