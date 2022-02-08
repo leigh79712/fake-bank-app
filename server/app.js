@@ -7,6 +7,19 @@ const dev = "development";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const mongoose = require("mongoose");
+// const MongoStore = require("connect-mongo");
+const mongo_Url =
+  "mongodb+srv://dbUser:W7aMnwMsSSGDcBBF@cluster0.6epjm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+mongoose
+  .connect(mongo_Url)
+  .then(() => {
+    console.log("Connection open");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 app.prepare().then(() => {
   const server = new Koa();
   const router = new Router();
