@@ -2,7 +2,7 @@
   "name": "fake-bank-app",
   "private": true,
   "scripts": {
-    "dev": "node server/app.js",
+    "dev": "nodemon server/app.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -10,13 +10,19 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@koa/router": "^10.1.1",
+    "axios": "^0.25.0",
     "connect-mongo": "^4.6.0",
     "dotenv": "^10.0.0",
     "googleapis": "^92.0.0",
     "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-json": "^2.0.2",
+    "koa-passport": "^4.1.4",
+    "koa-session": "^6.2.0",
     "mongoose": "^6.1.5",
     "next": "12.0.7",
     "normalize.css": "^8.0.1",
+    "passport-local": "^1.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
