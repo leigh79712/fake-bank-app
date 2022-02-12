@@ -3,7 +3,6 @@ import { loginUser } from "../../lib/auth";
 class LoginForm extends React.Component {
   state = {
     username: "",
-    email: "",
     password: "",
   };
   handleChange = (e) => {

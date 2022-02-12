@@ -5,6 +5,7 @@ const json = require("koa-json");
 const bodyParser = require("koa-bodyparser");
 const passport = require("koa-passport");
 const session = require("koa-session");
+const User = require("../models/user");
 
 const port = 3000;
 const dev = "development";
@@ -37,18 +38,23 @@ app.prepare().then(() => {
   server.use(bodyParser());
   server.use(json());
 
-  // require("../lib/auth");
+  require("../lib/authPassport");
   server.use(passport.initialize());
   server.use(passport.session());
 
-  // passport.use(new LocalStrategy(User.authenticate()));
-  // passport.serializeUser(User.serializeUser());
-  // passport.deserializeUser(User.deserializeUser());
+  passport.serializeUser(User.serializeUser());
+  passport.deserializeUser(User.deserializeUser());
+
+  router.post("/register", async (ctx) => {
+    const { firstname, lastname, username, password, email } = ctx.request.body;
+    const user = new User({ username, email, firstname, lastname });
+    // await user.save();
+    console.log(user);
+  });
 
   router.post("/login", (ctx) => {
     // const { username, password } = ctx.body;
     const { username, password } = ctx.request.body;
-    authenticate(username, password);
   });
 
   router.all("(.*)", async (ctx) => {
