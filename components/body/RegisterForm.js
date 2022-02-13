@@ -4,10 +4,10 @@ import { registerUser } from "../../lib/auth";
 
 class RegisterForm extends React.Component {
   state = {
-    username: "",
-    password: "",
     firstname: "",
     lastname: "",
+    username: "",
+    password: "",
     email: "",
   };
   handleChange = (e) => {
@@ -16,7 +16,7 @@ class RegisterForm extends React.Component {
   handleSubmit = (e) => {
     const { firstname, lastname, username, password, email } = this.state;
     e.preventDefault();
-    registerUser(username, password, email, firstname, lastname);
+    registerUser(firstname, lastname, username, password, email);
   };
   render() {
     return (

@@ -48,7 +48,7 @@ app.prepare().then(() => {
   router.post("/register", async (ctx) => {
     const { firstname, lastname, username, password, email } = ctx.request.body;
     const user = new User({ username, email, firstname, lastname });
-    // await user.save();
+    const registeredUser = await User.register(user, password);
     console.log(user);
   });
 
