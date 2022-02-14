@@ -32,8 +32,13 @@ app.prepare().then(() => {
   const server = new Koa();
   const router = new Router();
 
+  const CONFIG = {
+    key: "koa.sess",
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    httpOnly: true,
+  };
   server.keys = ["your-session-secret"];
-  server.use(session({}, server));
+  server.use(session(CONFIG, server));
 
   server.use(bodyParser());
   server.use(json());
@@ -52,10 +57,17 @@ app.prepare().then(() => {
     console.log(user);
   });
 
-  router.post("/login", (ctx) => {
-    // const { username, password } = ctx.body;
-    const { username, password } = ctx.request.body;
-  });
+  router.post(
+    "/login",
+    passport.authenticate("local", {
+      failureFlash: true,
+      failureRedirect: "/login",
+    }),
+    (ctx) => {
+      ctx.login();
+      const { username, password } = ctx.request.body;
+    }
+  );
 
   router.all("(.*)", async (ctx) => {
     await handle(ctx.req, ctx.res);
