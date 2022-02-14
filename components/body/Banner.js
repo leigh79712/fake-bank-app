@@ -36,13 +36,13 @@ const Banner = () => {
       >
         <div>
           <h1
+            dangerouslySetInnerHTML={{ __html: bannerh1 }}
             css={css`
               font-size: 5.5rem;
               line-height: 1.35;
             `}
-          >
-            {bannerh1}
-          </h1>
+          />
+
           <h4
             css={css`
               font-size: 2.4rem;
