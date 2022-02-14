@@ -3,14 +3,19 @@ import React, { useState } from "react";
 import { css } from "@emotion/react";
 import Button from "./Button";
 import SectionHeader from "./SectionHeader";
+import Languages from "../Header/Languages";
+import { useRouter } from "next/router";
+import Content from "../Header/Content.json";
 const JoinToday = () => {
+  const router = useRouter();
+  const { jointodayheader, joinus } = Content[router.locale];
   return (
     <div
       css={css`
         margin: 6em 0;
       `}
     >
-      <SectionHeader>Do your banking where and when you like</SectionHeader>
+      <SectionHeader>{jointodayheader}</SectionHeader>
       <div
         css={css`
           text-align: center;
@@ -23,7 +28,7 @@ const JoinToday = () => {
             border-radius: 50px;
           `}
         >
-          Join Us Today
+          {joinus}
         </Button>
       </div>
     </div>

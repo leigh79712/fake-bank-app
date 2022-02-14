@@ -8,18 +8,22 @@ import SectionHeader from "./SectionHeader";
 import bank from "../../public/images/bank.jpeg";
 import saving from "../../public/images/saving.jpeg";
 import piggybank from "../../public/images/piggybank.jpeg";
+import Languages from "../Header/Languages";
+import { useRouter } from "next/router";
+import Content from "../Header/Content.json";
 
 const Feature = () => {
+  const router = useRouter();
+  const { feature, featureheader, feature1, feature2, feature3 } =
+    Content[router.locale];
   return (
     <div
       css={css`
         padding: 5em 13em;
       `}
     >
-      <SectionTitle>FEATURE</SectionTitle>
-      <SectionHeader>
-        Everything you need in a modern bank and More
-      </SectionHeader>
+      <SectionTitle>{feature}</SectionTitle>
+      <SectionHeader>{featureheader}</SectionHeader>
       <div
         css={css`
           margin: 4em auto;
@@ -44,7 +48,7 @@ const Feature = () => {
               margin-bottom: 1rem;
             `}
           >
-            100% digital bank
+            {feature1}
           </h5>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
@@ -63,7 +67,7 @@ const Feature = () => {
               margin-bottom: 1rem;
             `}
           >
-            Watch your money grow
+            {feature2}
           </h5>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
@@ -87,7 +91,7 @@ const Feature = () => {
               margin-bottom: 1rem;
             `}
           >
-            Free debit card included
+            {feature3}
           </h5>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
