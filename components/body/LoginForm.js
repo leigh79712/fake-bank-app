@@ -5,6 +5,7 @@ class LoginForm extends React.Component {
     username: "",
     password: "",
   };
+
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
