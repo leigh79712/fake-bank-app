@@ -2,7 +2,7 @@
   "name": "fake-bank-app",
   "private": true,
   "scripts": {
-    "dev": "nodemon server/app.js",
+    "dev": "node server/app.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -30,6 +30,7 @@
   "devDependencies": {
     "@svgr/webpack": "^6.1.2",
     "eslint": "^8.9.0",
-    "eslint-plugin-react-hooks": "^4.3.0"
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "nodemon": "^2.0.15"
   }
 }
