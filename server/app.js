@@ -1,10 +1,8 @@
-const Koa = require("koa");
+const express = require("express");
 const next = require("next");
-const Router = require("@koa/router");
-const json = require("koa-json");
-const bodyParser = require("koa-bodyparser");
-const passport = require("koa-passport");
-const session = require("koa-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const session = require("express-session");
 const User = require("../models/user");
 
 const port = 3000;
@@ -12,9 +10,7 @@ const dev = "development";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-// const User = require("../models/user");
 const mongoose = require("mongoose");
-const { authenticate } = require("passport");
 // const MongoStore = require("connect-mongo");
 const mongo_Url =
   "mongodb+srv://dbUser:W7aMnwMsSSGDcBBF@cluster0.6epjm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -29,58 +25,55 @@ mongoose
 // const authenticate = (username, password) => {};
 
 app.prepare().then(() => {
-  const server = new Koa();
-  const router = new Router();
-
+  const server = express();
+  const secret = process.env.SECRET || "thisshouldbeabettersecret!";
   const CONFIG = {
-    key: "koa.sess",
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-    httpOnly: true,
+    name: "secsion",
+    secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      // secure: true,
+      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
   };
-  server.keys = ["your-session-secret"];
-  server.use(session(CONFIG, server));
 
-  server.use(bodyParser());
-  server.use(json());
+  server.use(session(CONFIG));
 
   require("../lib/authPassport");
   server.use(passport.initialize());
   server.use(passport.session());
+  passport.use(new LocalStrategy(User.authenticate()));
+  passport.serializeUser(User.serializeUser());
+  passport.deserializeUser(User.deserializeUser());
 
-  // passport.serializeUser(User.serializeUser());
-  // passport.deserializeUser(User.deserializeUser());
-
-  router.post("/register", async (ctx) => {
+  server.post("/register", async (req, res) => {
     const { firstname, lastname, username, password, email } = ctx.request.body;
     const user = new User({ username, email, firstname, lastname });
     const registeredUser = await User.register(user, password);
     console.log(user);
   });
 
-  router.post(
+  server.post(
     "/login",
     passport.authenticate("local", {
       failureFlash: true,
       failureRedirect: "/login",
     }),
-    (ctx) => {
-      ctx.login();
-      const { username, password } = ctx.request.body;
+    (req, res) => {
+      const { username, password } = req.body;
+      res.send("hi");
     }
   );
 
-  router.all("(.*)", async (ctx) => {
-    await handle(ctx.req, ctx.res);
-    ctx.respond = false;
+  server.all("(*)", async (req, res) => {
+    return handle(req, res);
   });
 
-  server.use(async (ctx, next) => {
-    ctx.res.statusCode = 200;
-    await next();
-  });
-
-  server.use(router.routes());
-  server.listen(port, () => {
+  server.listen(port, (err) => {
+    if (err) throw err;
     console.log(`> Ready on http://localhost:${port}`);
   });
 });
