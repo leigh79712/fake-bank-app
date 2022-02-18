@@ -47,8 +47,8 @@ app.prepare().then(() => {
   server.use(passport.initialize());
   server.use(passport.session());
 
-  passport.serializeUser(User.serializeUser());
-  passport.deserializeUser(User.deserializeUser());
+  // passport.serializeUser(User.serializeUser());
+  // passport.deserializeUser(User.deserializeUser());
 
   router.post("/register", async (ctx) => {
     const { firstname, lastname, username, password, email } = ctx.request.body;

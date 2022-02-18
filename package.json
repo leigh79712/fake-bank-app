@@ -4,8 +4,7 @@
   "scripts": {
     "dev": "node server/app.js",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
