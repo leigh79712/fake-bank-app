@@ -10,7 +10,7 @@ const SectionHeader = (props) => {
           font-size: 4rem;
           line-height: 1.3;
           font-weight: 500;
-
+          text-align: center;
           width: 800px;
           margin: 0 auto;
         `}

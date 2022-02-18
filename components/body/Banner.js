@@ -5,7 +5,14 @@ import Image from "next/image";
 import { css } from "@emotion/react";
 import Button from "./Button";
 import card from "../../public/images/card.jpeg";
+import Languages from "../Header/Languages";
+import { useRouter } from "next/router";
+import Content from "../Header/Content.json";
+
 const Banner = () => {
+  const router = useRouter();
+  const { bannerh1, bannerh4, register } = Content[router.locale];
+
   return (
     <div
       css={css`
@@ -29,22 +36,22 @@ const Banner = () => {
       >
         <div>
           <h1
+            dangerouslySetInnerHTML={{ __html: bannerh1 }}
             css={css`
               font-size: 5.5rem;
               line-height: 1.35;
             `}
-          >
-            When banking meets minimalist
-          </h1>
+          />
+
           <h4
             css={css`
               font-size: 2.4rem;
               font-weight: 500;
             `}
           >
-            Make your life easier
+            {bannerh4}
           </h4>
-          <Button>Register</Button>
+          <Button>{register}</Button>
         </div>
         <div>
           <Image src={card} alt="card"></Image>

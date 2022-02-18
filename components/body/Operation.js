@@ -7,14 +7,18 @@ import Image from "next/image";
 import icon1 from "../../public/images/icon1.png";
 import icon2 from "../../public/images/icon2.png";
 import icon3 from "../../public/images/icon3.png";
+import Languages from "../Header/Languages";
+import { useRouter } from "next/router";
+import Content from "../Header/Content.json";
 
 const Operation = () => {
+  const router = useRouter();
+  const { operations, operationheader, operation1, operation2, operation3 } =
+    Content[router.locale];
   return (
     <>
-      <SectionTitle>OPERATIONS</SectionTitle>
-      <SectionHeader>
-        Everything as simple as possible, but no simpler.
-      </SectionHeader>
+      <SectionTitle>{operations}</SectionTitle>
+      <SectionHeader>{operationheader}</SectionHeader>
       <div
         css={css`
           padding: 4em 12em;
@@ -35,7 +39,7 @@ const Operation = () => {
                 margin-bottom: 1rem;
               `}
             >
-              Open a new everyday account
+              {operation1}
             </h5>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
@@ -52,7 +56,7 @@ const Operation = () => {
                 margin-bottom: 1rem;
               `}
             >
-              Frequent Flyer Points
+              {operation2}
             </h5>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
@@ -69,7 +73,7 @@ const Operation = () => {
                 margin-bottom: 1rem;
               `}
             >
-              Quick Start Home Loan Application
+              {operation3}
             </h5>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis

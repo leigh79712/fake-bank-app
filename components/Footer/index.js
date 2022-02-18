@@ -3,18 +3,13 @@ import { css } from "@emotion/react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/images/icon-light.png";
-
-const Links = [
-  { name: "About", url: "/about" },
-  { name: "Pricing", url: "/pricing" },
-  { name: "Terms of Use", url: "/terms-of-use" },
-  { name: "Privacy Policy", url: "/privacy-policy" },
-  { name: "Careers", url: "/careers" },
-  { name: "Blog", url: "/blog" },
-  { name: "Contact Us", url: "/contact-us" },
-];
+import Languages from "../Header/Languages";
+import { useRouter } from "next/router";
+import Content from "../Header/Content.json";
 
 const Footer = () => {
+  const router = useRouter();
+  const { footerlinks } = Content[router.locale];
   return (
     <footer
       css={css`
@@ -31,7 +26,7 @@ const Footer = () => {
           margin-bottom: 5rem;
         `}
       >
-        {Links.map((link) => (
+        {footerlinks.map((link) => (
           <li key={link.name}>
             <Link href={link.url}>
               <a
