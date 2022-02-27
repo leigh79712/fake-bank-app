@@ -3,6 +3,7 @@ const next = require("next");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const session = require("express-session");
+const cors = require("cors");
 const User = require("../models/user");
 
 const port = 3000;
@@ -22,49 +23,40 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-// const authenticate = (username, password) => {};
+const secret = process.env.SECRET || "thisshouldbeabettersecret!";
 
+const CONFIG = {
+  name: "secsion",
+  secret,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    // secure: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+};
 app.prepare().then(() => {
   const server = express();
-  const secret = process.env.SECRET || "thisshouldbeabettersecret!";
-  const CONFIG = {
-    name: "secsion",
-    secret,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      httpOnly: true,
-      // secure: true,
-      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-    },
-  };
 
   server.use(session(CONFIG));
+  server.use(cors({ origin: "http://localhost:3000", credential: true }));
 
-  require("../lib/authPassport");
   server.use(passport.initialize());
   server.use(passport.session());
   passport.use(new LocalStrategy(User.authenticate()));
   passport.serializeUser(User.serializeUser());
   passport.deserializeUser(User.deserializeUser());
 
-  server.post("/register", async (req, res) => {
-    const { firstname, lastname, username, password, email } = ctx.request.body;
-    const user = new User({ username, email, firstname, lastname });
-    const registeredUser = await User.register(user, password);
-    console.log(user);
-  });
-
   server.post(
     "/login",
     passport.authenticate("local", {
-      failureFlash: true,
       failureRedirect: "/login",
     }),
     (req, res) => {
       const { username, password } = req.body;
-      res.send("hi");
+      console.log(req.body);
     }
   );
 

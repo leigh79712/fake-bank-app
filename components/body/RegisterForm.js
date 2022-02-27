@@ -1,71 +1,80 @@
-import React from "react";
-import { registerUser } from "../../lib/auth";
-// import User from "../../models/user";
+import React, { useState } from "react";
 
-class RegisterForm extends React.Component {
-  state = {
-    firstname: "",
-    lastname: "",
-    username: "",
-    password: "",
-    email: "",
-  };
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-  handleSubmit = (e) => {
-    const { firstname, lastname, username, password, email } = this.state;
+const RegisterForm = () => {
+  const [fisrtname, setFisrtname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    registerUser(firstname, lastname, username, password, email);
+    const response = await fetch("api/user", {
+      method: "POST",
+      body: JSON.stringify({
+        fisrtname,
+        lastname,
+        username,
+        password,
+        email,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
   };
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <input
-            type="text"
-            placeholder="firstname"
-            name="firstname"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="lastname"
-            name="lastname"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="username"
-            name="username"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            placeholder="password"
-            name="password"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            placeholder="email"
-            name="email"
-            onChange={this.handleChange}
-          />
-        </div>
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <input
+          type="text"
+          placeholder="firstname"
+          name="firstname"
+          value={fisrtname}
+          onChange={(e) => setFisrtname(e.target.value)}
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="lastname"
+          name="lastname"
+          value={lastname}
+          onChange={(e) => setLastname(e.target.value)}
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="username"
+          name="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      <div>
+        <input
+          type="password"
+          placeholder="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <div>
+        <input
+          type="email"
+          placeholder="email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
 
-        <button type="submit">Submit</button>
-      </form>
-    );
-  }
-}
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
 
 export default RegisterForm;
