@@ -37,12 +37,20 @@ const CONFIG = {
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
 };
+
+const isLoggedIn = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect("/login");
+  }
+  next();
+};
 app.prepare().then(() => {
   const server = express();
 
   server.use(session(CONFIG));
   server.use(cors({ origin: "http://localhost:3000", credential: true }));
 
+  server.use(express.urlencoded({ extended: true }));
   server.use(passport.initialize());
   server.use(passport.session());
   passport.use(new LocalStrategy(User.authenticate()));
@@ -55,10 +63,16 @@ app.prepare().then(() => {
       failureRedirect: "/login",
     }),
     (req, res) => {
-      const { username, password } = req.body;
       console.log(req.body);
+      console.log(req.user);
+      res.redirect("/");
     }
   );
+
+  server.get((req, res) => {
+    req.logout();
+    res.redirect("/");
+  });
 
   server.all("(*)", async (req, res) => {
     return handle(req, res);
