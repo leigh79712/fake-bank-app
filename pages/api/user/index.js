@@ -10,6 +10,6 @@ export default async function handler(req, res) {
     const user = new User({ username, email, firstname, lastname });
     const registeredUser = await User.register(user, password);
     // req.flash("success", "Successfully made a new campground");
-    return;
+    res.redirect("/");
   }
 }

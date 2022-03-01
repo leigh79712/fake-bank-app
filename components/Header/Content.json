@@ -5,6 +5,7 @@
       { "name": "FEATURE", "url": "/feature" },
       { "name": "OPERATIONS", "url": "/operations" }
     ],
+    "logout": "Logout",
     "login": "Login",
     "register": "Register",
     "bannerh1": "When banking meets minimalist",
@@ -37,6 +38,7 @@
       { "name": "服務", "url": "/feature" },
       { "name": "相關業務", "url": "/operations" }
     ],
+    "logout": "登出",
     "login": "登入",
     "register": "註冊",
     "bannerh1": "讓 極 簡 主 義<br/>融 入 您 的 金 融 生 活",

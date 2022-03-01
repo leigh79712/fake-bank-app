@@ -1,43 +1,42 @@
+/** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
-
-import axios, { Axios } from "axios";
+import { css } from "@emotion/react";
+import Button from "./Button";
+import Input from "./Input";
+import Label from "./Label";
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
 
-  //   axios({
-  //     method: "POST",
-  //     data: {
-  //       username: username,
-  //       password: password,
-  //     },
-  //     url: "/login",
-  //   }).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
   return (
-    <form method="POST" action="/login">
+    <form
+      method="POST"
+      action="/login"
+      css={css`
+        text-align: center;
+        margin: 2em;
+        padding: 2em;
+      `}
+    >
+      <h1>Login</h1>
       <div>
-        <input
+        <Label for="username">Username</Label>
+        <Input
           type="text"
-          placeholder="username"
           name="username"
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
       <div>
-        <input
+        <Label for="password">Password</Label>
+        <Input
           type="password"
-          placeholder="password"
           name="password"
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
-      <button type="submit">Submit</button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 };

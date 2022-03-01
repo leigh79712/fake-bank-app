@@ -13,7 +13,7 @@ const Header = ({ themeState, toggleTheme }) => {
   const [opacity, setOpacity] = useState(1);
   const router = useRouter();
   const theme = useTheme();
-  const { links, login, register } = Content[router.locale];
+  const { links, login, register, logout } = Content[router.locale];
 
   const mouseEnter = (e) => {
     e.target.style.opacity = 1;
@@ -68,7 +68,7 @@ const Header = ({ themeState, toggleTheme }) => {
               margin-left: 4rem;
             `}
           >
-            <Link href={link.name}>
+            <Link href={link.url}>
               <a
                 css={css`
                   font-size: 1.7rem;
@@ -96,6 +96,33 @@ const Header = ({ themeState, toggleTheme }) => {
           list-style: none;
         `}
       >
+        <li
+          css={css`
+            margin-left: 2rem;
+          `}
+        >
+          <form method="GET" action="/logout">
+            <button
+              css={css`
+                font-size: 1rem;
+                font-weight: 400;
+                color: inherit;
+                text-decoration: none;
+                display: block;
+                transition: all 0.3s;
+                cursor: pointer;
+                border: none;
+                background: none;
+                opacity: ${opacity};
+              `}
+              onMouseEnter={mouseEnter}
+              onMouseOut={mouseOut}
+            >
+              {logout}
+            </button>
+          </form>
+        </li>
+
         <li
           css={css`
             margin-left: 2rem;

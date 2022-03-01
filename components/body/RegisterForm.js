@@ -1,4 +1,9 @@
+/** @jsxImportSource @emotion/react */
+import { css, useTheme } from "@emotion/react";
 import React, { useState } from "react";
+import Button from "./Button";
+import Input from "./Input";
+import Label from "./Label";
 
 const RegisterForm = () => {
   const [fisrtname, setFisrtname] = useState("");
@@ -7,72 +12,86 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch("api/user", {
-      method: "POST",
-      body: JSON.stringify({
-        fisrtname,
-        lastname,
-        username,
-        password,
-        email,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const response = await fetch("api/user", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       fisrtname,
+  //       lastname,
+  //       username,
+  //       password,
+  //       email,
+  //     }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  //   const data = await response.json();
+  // };
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      method="POST"
+      action="/api/user"
+      css={css`
+        text-align: center;
+        margin: 2em;
+        padding: 2em;
+      `}
+    >
+      <h1
+        css={css`
+          text-align: center;
+        `}
+      >
+        Register
+      </h1>
       <div>
-        <input
+        <Label for="firstname">Firstname</Label>
+        <Input
           type="text"
-          placeholder="firstname"
           name="firstname"
           value={fisrtname}
           onChange={(e) => setFisrtname(e.target.value)}
         />
       </div>
       <div>
-        <input
+        <Label for="lastname">Lastname</Label>
+        <Input
           type="text"
-          placeholder="lastname"
           name="lastname"
           value={lastname}
           onChange={(e) => setLastname(e.target.value)}
         />
       </div>
       <div>
-        <input
+        <Label for="username">Username</Label>
+        <Input
           type="text"
-          placeholder="username"
           name="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
       <div>
-        <input
+        <Label for="password">password</Label>
+        <Input
           type="password"
-          placeholder="password"
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div>
-        <input
+        <Label for="email">E-mail:</Label>
+        <Input
           type="email"
-          placeholder="email"
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-
-      <button type="submit">Submit</button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 };

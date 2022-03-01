@@ -56,7 +56,11 @@ app.prepare().then(() => {
   passport.use(new LocalStrategy(User.authenticate()));
   passport.serializeUser(User.serializeUser());
   passport.deserializeUser(User.deserializeUser());
+  server.use((req, res, next) => {
+    res.locals.currentUser = req.user;
 
+    next();
+  });
   server.post(
     "/login",
     passport.authenticate("local", {
@@ -69,7 +73,7 @@ app.prepare().then(() => {
     }
   );
 
-  server.get((req, res) => {
+  server.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
   });
