@@ -2,7 +2,8 @@ const User = require("../../../models/user");
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    res.status(200).json({ name: " API route" });
+    const user = req.user;
+    res.status(200).json(user);
   }
 
   if (req.method === "POST") {

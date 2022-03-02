@@ -8,12 +8,22 @@ import ThemeButton from "./ThemeButton";
 import Languages from "./Languages";
 import { useRouter } from "next/router";
 import Content from "./Content.json";
+import useSWR from "swr";
 
 const Header = ({ themeState, toggleTheme }) => {
   const [opacity, setOpacity] = useState(1);
   const router = useRouter();
   const theme = useTheme();
   const { links, login, register, logout } = Content[router.locale];
+  const { data, err } = useSWR("/api/user", async function (args) {
+    const res = await fetch(args);
+    return res.json();
+  });
+  let loggedIn = false;
+  if (!data) loggedIn = false;
+  if (data) {
+    loggedIn = true;
+  }
 
   const mouseEnter = (e) => {
     e.target.style.opacity = 1;
@@ -96,84 +106,89 @@ const Header = ({ themeState, toggleTheme }) => {
           list-style: none;
         `}
       >
-        <li
-          css={css`
-            margin-left: 2rem;
-          `}
-        >
-          <form method="GET" action="/logout">
-            <button
-              css={css`
-                font-size: 1rem;
-                font-weight: 400;
-                color: inherit;
-                text-decoration: none;
-                display: block;
-                transition: all 0.3s;
-                cursor: pointer;
-                border: none;
-                background: none;
-                opacity: ${opacity};
-              `}
-              onMouseEnter={mouseEnter}
-              onMouseOut={mouseOut}
-            >
-              {logout}
-            </button>
-          </form>
-        </li>
-
-        <li
-          css={css`
-            margin-left: 2rem;
-          `}
-        >
-          <Link href="/login">
-            <a
-              css={css`
-                font-size: 1rem;
-                font-weight: 400;
-                color: inherit;
-                text-decoration: none;
-                display: block;
-                transition: all 0.3s;
-                cursor: pointer;
-                opacity: ${opacity};
-              `}
-              onMouseEnter={mouseEnter}
-              onMouseOut={mouseOut}
-            >
-              {login}
-            </a>
-          </Link>
-        </li>
-        <li
-          css={css`
-            margin-left: 2rem;
-          `}
-        >
-          <Link href="/register">
-            <a
-              css={css`
-                font-size: 1rem;
-                font-weight: 400;
-                color: #fff;
-                text-decoration: none;
-                display: block;
-                transition: all 0.3s;
-                cursor: pointer;
-                opacity: ${opacity};
-                background-color: #2ec4b6;
-                padding: 0.5em;
-                border-radius: 5px;
-              `}
-              onMouseEnter={mouseEnter}
-              onMouseOut={mouseOut}
-            >
-              {register}
-            </a>
-          </Link>
-        </li>
+        {loggedIn && (
+          <li
+            css={css`
+              margin-left: 2rem;
+            `}
+          >
+            <form method="GET" action="/logout">
+              <button
+                css={css`
+                  font-size: 1rem;
+                  font-weight: 400;
+                  color: inherit;
+                  text-decoration: none;
+                  display: block;
+                  transition: all 0.3s;
+                  cursor: pointer;
+                  border: none;
+                  background: none;
+                  opacity: ${opacity};
+                `}
+                onMouseEnter={mouseEnter}
+                onMouseOut={mouseOut}
+              >
+                {logout}
+              </button>
+            </form>
+          </li>
+        )}
+        {!loggedIn && (
+          <li
+            css={css`
+              margin-left: 2rem;
+            `}
+          >
+            <Link href="/login">
+              <a
+                css={css`
+                  font-size: 1rem;
+                  font-weight: 400;
+                  color: inherit;
+                  text-decoration: none;
+                  display: block;
+                  transition: all 0.3s;
+                  cursor: pointer;
+                  opacity: ${opacity};
+                `}
+                onMouseEnter={mouseEnter}
+                onMouseOut={mouseOut}
+              >
+                {login}
+              </a>
+            </Link>
+          </li>
+        )}
+        {!loggedIn && (
+          <li
+            css={css`
+              margin-left: 2rem;
+            `}
+          >
+            <Link href="/register">
+              <a
+                css={css`
+                  font-size: 1rem;
+                  font-weight: 400;
+                  color: #fff;
+                  text-decoration: none;
+                  display: block;
+                  transition: all 0.3s;
+                  cursor: pointer;
+                  opacity: ${opacity};
+                  background-color: #2ec4b6;
+                  padding: 0.5em;
+                  border-radius: 5px;
+                `}
+                onMouseEnter={mouseEnter}
+                onMouseOut={mouseOut}
+              >
+                {register}
+              </a>
+            </Link>
+          </li>
+        )}
         <li
           css={css`
             margin-left: 2rem;

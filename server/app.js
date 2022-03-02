@@ -58,17 +58,15 @@ app.prepare().then(() => {
   passport.deserializeUser(User.deserializeUser());
   server.use((req, res, next) => {
     res.locals.currentUser = req.user;
-
     next();
   });
+
   server.post(
     "/login",
     passport.authenticate("local", {
       failureRedirect: "/login",
     }),
     (req, res) => {
-      console.log(req.body);
-      console.log(req.user);
       res.redirect("/");
     }
   );

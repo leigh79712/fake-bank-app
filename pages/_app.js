@@ -5,6 +5,7 @@ import { lightTheme, darkTheme } from "styles/theme";
 import Layout from "../components/Layout";
 
 const App = ({ Component, pageProps }) => {
+  const { session } = pageProps;
   const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
@@ -24,7 +25,10 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <StrictMode>
-      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <ThemeProvider
+        session={session}
+        theme={theme === "light" ? lightTheme : darkTheme}
+      >
         <GlobalStyle />
         <Layout themeState={theme} toggleTheme={toggleTheme}>
           <Component {...pageProps} />

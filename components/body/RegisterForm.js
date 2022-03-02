@@ -47,7 +47,7 @@ const RegisterForm = () => {
         Register
       </h1>
       <div>
-        <Label for="firstname">Firstname</Label>
+        <Label htmlFor="firstname">Firstname</Label>
         <Input
           type="text"
           name="firstname"
@@ -56,7 +56,7 @@ const RegisterForm = () => {
         />
       </div>
       <div>
-        <Label for="lastname">Lastname</Label>
+        <Label htmlFor="lastname">Lastname</Label>
         <Input
           type="text"
           name="lastname"
@@ -65,7 +65,7 @@ const RegisterForm = () => {
         />
       </div>
       <div>
-        <Label for="username">Username</Label>
+        <Label htmlFor="username">Username</Label>
         <Input
           type="text"
           name="username"
@@ -74,7 +74,7 @@ const RegisterForm = () => {
         />
       </div>
       <div>
-        <Label for="password">password</Label>
+        <Label htmlFor="password">password</Label>
         <Input
           type="password"
           name="password"
@@ -83,7 +83,7 @@ const RegisterForm = () => {
         />
       </div>
       <div>
-        <Label for="email">E-mail:</Label>
+        <Label htmlFor="email">E-mail:</Label>
         <Input
           type="email"
           name="email"

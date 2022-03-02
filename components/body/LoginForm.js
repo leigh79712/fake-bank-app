@@ -20,7 +20,7 @@ const LoginForm = () => {
     >
       <h1>Login</h1>
       <div>
-        <Label for="username">Username</Label>
+        <Label htmlFor="username">Username</Label>
         <Input
           type="text"
           name="username"
@@ -28,7 +28,7 @@ const LoginForm = () => {
         />
       </div>
       <div>
-        <Label for="password">Password</Label>
+        <Label htmlFor="password">Password</Label>
         <Input
           type="password"
           name="password"
