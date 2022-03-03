@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { css } from "@emotion/react";
-import Button from "./Button";
+import Button from "./components/Button";
 import card from "../../public/images/card.jpeg";
 import Languages from "../Header/Languages";
 import { useRouter } from "next/router";

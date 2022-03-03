@@ -107,6 +107,28 @@ const Header = ({ themeState, toggleTheme }) => {
         `}
       >
         {loggedIn && (
+          <li>
+            <Link href="/">
+              <a
+                css={css`
+                  font-size: 1rem;
+                  font-weight: 400;
+                  color: inherit;
+                  text-decoration: none;
+                  display: block;
+                  transition: all 0.3s;
+                  cursor: pointer;
+                  opacity: ${opacity};
+                `}
+                onMouseEnter={mouseEnter}
+                onMouseOut={mouseOut}
+              >
+                {data.lastname}
+              </a>
+            </Link>
+          </li>
+        )}
+        {loggedIn && (
           <li
             css={css`
               margin-left: 2rem;

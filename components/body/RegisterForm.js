@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from "@emotion/react";
 import React, { useState } from "react";
-import Button from "./Button";
-import Input from "./Input";
-import Label from "./Label";
+import Button from "./components/Button";
+import Input from "./components/Input";
+import Label from "./components/Label";
 
 const RegisterForm = () => {
   const [fisrtname, setFisrtname] = useState("");

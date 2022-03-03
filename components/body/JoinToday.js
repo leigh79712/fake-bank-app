@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
 import { css } from "@emotion/react";
-import Button from "./Button";
-import SectionHeader from "./SectionHeader";
+import Button from "./components/Button";
+import SectionHeader from "./components/SectionHeader";
 import Languages from "../Header/Languages";
 import { useRouter } from "next/router";
 import Content from "../Header/Content.json";

@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
 import { css } from "@emotion/react";
-import Button from "./Button";
-import Input from "./Input";
-import Label from "./Label";
+import Button from "./components/Button";
+import Input from "./components/Input";
+import Label from "./components/Label";
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
