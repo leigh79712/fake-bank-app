@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
 import { css, useTheme } from "@emotion/react";
+import useSWR from "swr";
 import H2 from "./components/bodycomponents/H2";
 import {
   Pcurrentbalance,
@@ -20,9 +21,14 @@ import {
   OperationForm,
   OperationInput,
   OperationButton,
+  OperationLabel,
 } from "./components/bodycomponents/Operation";
 
 const Bankapp = () => {
+  const { data, err } = useSWR("/api/user", async function (args) {
+    const res = await fetch(args);
+    return res.json();
+  });
   return (
     <div
       css={css`
@@ -88,6 +94,8 @@ const Bankapp = () => {
           <OperationInput type="text" name="" id="" />
           <OperationInput type="number" />
           <OperationButton>→</OperationButton>
+          <OperationLabel>Transfer to</OperationLabel>
+          <OperationLabel>Amount</OperationLabel>
         </OperationForm>
       </Operation>
       <Operation
@@ -96,9 +104,21 @@ const Bankapp = () => {
         `}
       >
         <H2>Request loan</H2>
-        <OperationForm action="">
+        <OperationForm
+          action=""
+          css={css`
+            grid-template-columns: 2.5fr 1fr 2.5fr;
+          `}
+        >
           <OperationInput type="number" />
           <OperationButton>→</OperationButton>
+          <OperationLabel
+            css={css`
+              grid-row: 2;
+            `}
+          >
+            Amount
+          </OperationLabel>
         </OperationForm>
       </Operation>
       <Operation
@@ -106,10 +126,23 @@ const Bankapp = () => {
           background-image: linear-gradient(to top left, #e52a5a, #ff585f);
         `}
       >
-        <H2>Withdraw</H2>
-        <OperationForm action="">
-          <OperationInput type="number" />
+        <H2>Deposit</H2>
+        <OperationForm
+          action={`/api/${data._id}/deposit`}
+          method="POST"
+          css={css`
+            grid-template-columns: 2.5fr 1fr 2.5fr;
+          `}
+        >
+          <OperationInput type="number" name="amount" />
           <OperationButton>→</OperationButton>
+          <OperationLabel
+            css={css`
+              grid-row: 2;
+            `}
+          >
+            Amount
+          </OperationLabel>
         </OperationForm>
       </Operation>
       <p

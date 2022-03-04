@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 
 const Operation = (props) => {
   return (
-    <p
+    <div
       css={css`
         border-radius: 1rem;
         padding: 3rem 4rem;
@@ -13,7 +13,7 @@ const Operation = (props) => {
       {...props}
     >
       {props.children}
-    </p>
+    </div>
   );
 };
 
@@ -48,6 +48,10 @@ const OperationInput = (props) => {
         padding: 0.3rem 1rem;
         border-radius: 0.7rem;
         transition: all 0.3s;
+        &:focus {
+          outline: none;
+          background-color: rgba(255, 255, 255, 0.6);
+        }
       `}
       {...props}
     >
@@ -66,6 +70,10 @@ const OperationButton = (props) => {
         background-color: #fff;
         cursor: pointer;
         transition: all 0.3s;
+        &:focus {
+          outline: none;
+          background-color: rgba(255, 255, 255, 0.8);
+        }
       `}
       {...props}
     >
@@ -73,4 +81,25 @@ const OperationButton = (props) => {
     </button>
   );
 };
-export { Operation, OperationForm, OperationInput, OperationButton };
+
+const OperationLabel = (props) => {
+  return (
+    <label
+      css={css`
+        font-size: 1.3rem;
+        text-align: center;
+      `}
+      {...props}
+    >
+      {props.children}
+    </label>
+  );
+};
+
+export {
+  Operation,
+  OperationForm,
+  OperationInput,
+  OperationButton,
+  OperationLabel,
+};

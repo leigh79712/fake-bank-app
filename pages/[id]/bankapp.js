@@ -1,5 +1,5 @@
 import React from "react";
-import Bankapp from "../components/body/Bankapp";
+import Bankapp from "../../components/body/Bankapp";
 const bankapp = () => {
   return <Bankapp />;
 };

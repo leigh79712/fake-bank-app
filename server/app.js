@@ -61,6 +61,10 @@ app.prepare().then(() => {
     next();
   });
 
+  server.post("/:id/deposit", (req, res) => {
+    res.send("hi");
+  });
+
   server.post(
     "/login",
     passport.authenticate("local", {

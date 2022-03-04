@@ -108,7 +108,7 @@ const Header = ({ themeState, toggleTheme }) => {
       >
         {loggedIn && (
           <li>
-            <Link href="/">
+            <Link href={`/${data._id}/bankapp`}>
               <a
                 css={css`
                   font-size: 1rem;
