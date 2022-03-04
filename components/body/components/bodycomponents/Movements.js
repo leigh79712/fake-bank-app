@@ -18,4 +18,53 @@ const MovementsMain = (props) => {
   );
 };
 
-export { MovementsMain };
+const MovementsRow = (props) => {
+  return (
+    <div
+      css={css`
+        padding: 2.25rem 4rem;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+      `}
+      {...props}
+    >
+      {props.children}
+    </div>
+  );
+};
+
+const MovementsDate = (props) => {
+  return (
+    <div
+      css={css`
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        color: #666;
+      `}
+      {...props}
+    >
+      {props.children}
+    </div>
+  );
+};
+const MovementsType = (props) => {
+  return (
+    <div
+      css={css`
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        color: #fff;
+        padding: 0.1rem 1rem;
+        border-radius: 10rem;
+        margin-right: 2rem;
+      `}
+      {...props}
+    >
+      {props.children}
+    </div>
+  );
+};
+export { MovementsMain, MovementsRow, MovementsType, MovementsDate };
