@@ -29,6 +29,10 @@ const Bankapp = () => {
     const res = await fetch(args);
     return res.json();
   });
+
+  const depositSubmit = (e) => {
+    e.preventdefault();
+  };
   return (
     <div
       css={css`
