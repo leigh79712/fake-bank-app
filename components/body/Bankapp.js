@@ -9,7 +9,13 @@ import {
   PBalance,
   BalanceMain,
 } from "./components/bodycomponents/Balance";
-import { MovementsMain } from "./components/bodycomponents/Movements";
+import {
+  MovementsMain,
+  MovementsRow,
+  MovementsType,
+  MovementsValue,
+  MovementsDate,
+} from "./components/bodycomponents/Movements";
 import {
   SummaryMain,
   SummaryP,
@@ -28,6 +34,13 @@ const Bankapp = () => {
   const { data, err } = useSWR("/api/user", async function (args) {
     const res = await fetch(args);
     return res.json();
+  });
+
+  const movement = data.movements.map((amount) => +amount.amount);
+  let sum = 0;
+
+  movement.forEach(function (element) {
+    sum += element;
   });
 
   const depositSubmit = (e) => {
@@ -53,10 +66,18 @@ const Bankapp = () => {
             " As of " <span></span>
           </PDate>
         </div>
-        <PBalance>€</PBalance>
+        <PBalance>{sum}€</PBalance>
       </BalanceMain>
       {/* movements */}
-      <MovementsMain></MovementsMain>
+      <MovementsMain>
+        {data.movements.map((movement) => (
+          <MovementsRow key={movement.date}>
+            <MovementsType>{movement.type}</MovementsType>
+            <MovementsDate>{movement.date}</MovementsDate>
+            <MovementsValue>{movement.amount}</MovementsValue>
+          </MovementsRow>
+        ))}
+      </MovementsMain>
       {/* summary */}
       <SummaryMain>
         <SummaryP>In</SummaryP>

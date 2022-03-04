@@ -60,6 +60,8 @@ const MovementsType = (props) => {
         padding: 0.1rem 1rem;
         border-radius: 10rem;
         margin-right: 2rem;
+        background-image: linear-gradient(to top left, #39b385, #9be15d);
+        /* background-image: linear-gradient(to top left, #e52a5a, #ff585f); */
       `}
       {...props}
     >
@@ -67,4 +69,24 @@ const MovementsType = (props) => {
     </div>
   );
 };
-export { MovementsMain, MovementsRow, MovementsType, MovementsDate };
+const MovementsValue = (props) => {
+  return (
+    <div
+      css={css`
+        font-size: 1.7rem;
+        margin-left: auto;
+      `}
+      {...props}
+    >
+      {props.children}
+    </div>
+  );
+};
+
+export {
+  MovementsMain,
+  MovementsRow,
+  MovementsType,
+  MovementsDate,
+  MovementsValue,
+};
