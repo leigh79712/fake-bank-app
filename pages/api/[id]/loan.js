@@ -6,8 +6,8 @@ export default async function handler(req, res) {
     const user = await User.findById(id);
     const { amount } = req.body;
     const movement = {
-      type: "deposit",
-      amount: +amount,
+      type: "loan",
+      amount: amount,
       date: new Date(),
     };
     user.movements.push(movement);

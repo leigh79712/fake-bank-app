@@ -38,7 +38,6 @@ const Bankapp = () => {
 
   const movement = data.movements.map((amount) => +amount.amount);
   let sum = 0;
-
   movement.forEach(function (element) {
     sum += element;
   });
@@ -63,7 +62,7 @@ const Bankapp = () => {
         <div>
           <Pcurrentbalance>Current balance</Pcurrentbalance>
           <PDate>
-            " As of " <span></span>
+            As of <span></span>
           </PDate>
         </div>
         <PBalance>{sum}€</PBalance>
@@ -115,9 +114,9 @@ const Bankapp = () => {
         `}
       >
         <H2>Transfer money</H2>
-        <OperationForm action="">
-          <OperationInput type="text" name="" id="" />
-          <OperationInput type="number" />
+        <OperationForm method="POST" action={`/api/${data._id}/transfer`}>
+          <OperationInput type="text" name="username" id="" />
+          <OperationInput type="number" name="amount" />
           <OperationButton>→</OperationButton>
           <OperationLabel>Transfer to</OperationLabel>
           <OperationLabel>Amount</OperationLabel>
@@ -130,12 +129,13 @@ const Bankapp = () => {
       >
         <H2>Request loan</H2>
         <OperationForm
-          action=""
+          action={`/api/${data._id}/loan`}
+          method="POST"
           css={css`
             grid-template-columns: 2.5fr 1fr 2.5fr;
           `}
         >
-          <OperationInput type="number" />
+          <OperationInput type="number" name="amount" />
           <OperationButton>→</OperationButton>
           <OperationLabel
             css={css`
