@@ -33,6 +33,9 @@ import {
 
 const Bankapp = () => {
   const [depositAmount, setDepositAmount] = useState("");
+  const [loanAmount, setLoanAmount] = useState("");
+  const [transferUsername, setTransferUsername] = useState("");
+  const [transferAmount, setTransferAmount] = useState("");
 
   const { data, err } = useSWR("/api/user", async function (args) {
     const res = await fetch(args);
@@ -66,6 +69,52 @@ const Bankapp = () => {
 
     setDepositAmount("");
   };
+  const loanSubmit = (e) => {
+    e.preventDefault();
+    const mov = `amount=${+loanAmount}`;
+    const response = fetch(`/api/${id}/loan`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: mov,
+    })
+      .then((res) => {
+        res.json();
+      })
+      .then((data) => console.log(data))
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    setLoanAmount("");
+  };
+  const transferSubmit = (e) => {
+    e.preventDefault();
+    const mov = `amount=${+transferAmount}&username=${transferUsername}`;
+    const response = fetch(`/api/${id}/transfer`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: mov,
+    })
+      .then((res) => {
+        res.json();
+      })
+      .then((data) => console.log(data))
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    setTransferAmount("");
+    setTransferUsername("");
+  };
+
+  const income = movement
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  const outcome = movement
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
 
   return (
     <div
@@ -108,7 +157,7 @@ const Bankapp = () => {
             color: #66c873;
           `}
         >
-          2€
+          {income}€
         </SummaryAmount>
 
         <SummaryP>Out</SummaryP>
@@ -117,7 +166,7 @@ const Bankapp = () => {
             color: #f5465d;
           `}
         >
-          2€
+          {outcome}€
         </SummaryAmount>
         <SummaryP>Interest</SummaryP>
         <SummaryAmount
@@ -136,9 +185,19 @@ const Bankapp = () => {
         `}
       >
         <H2>Transfer money</H2>
-        <OperationForm method="POST" action={`/api/${data._id}/transfer`}>
-          <OperationInput type="text" name="username" id="" />
-          <OperationInput type="number" name="amount" />
+        <OperationForm onSubmit={transferSubmit}>
+          <OperationInput
+            type="text"
+            name="username"
+            value={transferUsername}
+            onChange={(e) => setTransferUsername(e.target.value)}
+          />
+          <OperationInput
+            type="number"
+            name="amount"
+            value={transferAmount}
+            onChange={(e) => setTransferAmount(e.target.value)}
+          />
           <OperationButton>→</OperationButton>
           <OperationLabel>Transfer to</OperationLabel>
           <OperationLabel>Amount</OperationLabel>
@@ -151,13 +210,17 @@ const Bankapp = () => {
       >
         <H2>Request loan</H2>
         <OperationForm
-          action={`/api/${data._id}/loan`}
-          method="POST"
+          onSubmit={loanSubmit}
           css={css`
             grid-template-columns: 2.5fr 1fr 2.5fr;
           `}
         >
-          <OperationInput type="number" name="amount" />
+          <OperationInput
+            type="number"
+            name="amount"
+            value={loanAmount}
+            onChange={(e) => setLoanAmount(e.target.value)}
+          />
           <OperationButton>→</OperationButton>
           <OperationLabel
             css={css`
@@ -175,8 +238,6 @@ const Bankapp = () => {
       >
         <H2>Deposit</H2>
         <OperationForm
-          // action={`/api/${data._id}/deposit`}
-          // method="POST"
           onSubmit={depositSubmit}
           css={css`
             grid-template-columns: 2.5fr 1fr 2.5fr;
