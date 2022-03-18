@@ -8,7 +8,13 @@ import {
   PBalance,
   BalanceMain,
 } from "../bodycomponents/Balance";
+import { useRouter } from "next/router";
+import Content from "../../../Header/Content.json";
+
 const Balance = (props) => {
+  const router = useRouter();
+  const { loanP, save, hi } = Content[router.locale];
+
   const { data, err } = useSWR("/api/user", async function (args) {
     const res = await fetch(args);
     return res.json();
@@ -24,7 +30,6 @@ const Balance = (props) => {
       loan += +e.amount;
     }
   }
-  console.log(data);
 
   const now = new Date();
   const option = {
@@ -39,18 +44,20 @@ const Balance = (props) => {
   return (
     <BalanceMain>
       <div>
-        <Pcurrentbalance>Hi, {data.username}</Pcurrentbalance>
+        <Pcurrentbalance>
+          {hi} {data.username}
+        </Pcurrentbalance>
         <PDate>
           As of <span>{showDate}</span>
         </PDate>
       </div>
       <div>
-        <Pcurrentbalance>Savings</Pcurrentbalance>
+        <Pcurrentbalance>{save}</Pcurrentbalance>
 
         <PBalance>{sum}€</PBalance>
       </div>
       <div>
-        <Pcurrentbalance>Loan</Pcurrentbalance>
+        <Pcurrentbalance>{loanP}</Pcurrentbalance>
 
         <PBalance>{loan}€</PBalance>
       </div>

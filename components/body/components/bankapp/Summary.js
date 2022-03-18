@@ -8,8 +8,12 @@ import {
   SummaryAmount,
   SummaryButton,
 } from "../bodycomponents/Summary";
+import { useRouter } from "next/router";
+import Content from "../../../Header/Content.json";
 
 const Summary = (props) => {
+  const router = useRouter();
+  const { saving, out } = Content[router.locale];
   const { data, err } = useSWR("/api/user", async function (args) {
     const res = await fetch(args);
     return res.json();
@@ -23,7 +27,7 @@ const Summary = (props) => {
     .reduce((acc, mov) => acc + mov, 0);
   return (
     <SummaryMain>
-      <SummaryP>In</SummaryP>
+      <SummaryP>{saving}</SummaryP>
 
       <SummaryAmount
         css={css`
@@ -33,7 +37,7 @@ const Summary = (props) => {
         {income}€
       </SummaryAmount>
 
-      <SummaryP>Out</SummaryP>
+      <SummaryP>{out}</SummaryP>
       <SummaryAmount
         css={css`
           color: #f5465d;

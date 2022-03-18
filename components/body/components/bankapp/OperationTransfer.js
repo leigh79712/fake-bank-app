@@ -10,7 +10,12 @@ import {
   OperationLabel,
 } from "../bodycomponents/Operation";
 import H2 from "../bodycomponents/H2";
+import { useRouter } from "next/router";
+import Content from "../../../Header/Content.json";
+
 const OperationTransfer = () => {
+  const router = useRouter();
+  const { transfer, amount, transferto } = Content[router.locale];
   const [transferUsername, setTransferUsername] = useState("");
   const [transferAmount, setTransferAmount] = useState("");
   const { data, err } = useSWR("/api/user", async function (args) {
@@ -39,7 +44,7 @@ const OperationTransfer = () => {
   };
   return (
     <Operation>
-      <H2>Transfer money</H2>
+      <H2>{transfer}</H2>
       <OperationForm onSubmit={transferSubmit}>
         <OperationInput
           type="text"
@@ -54,8 +59,8 @@ const OperationTransfer = () => {
           onChange={(e) => setTransferAmount(e.target.value)}
         />
         <OperationButton>→</OperationButton>
-        <OperationLabel>Transfer to</OperationLabel>
-        <OperationLabel>Amount</OperationLabel>
+        <OperationLabel>{transferto}</OperationLabel>
+        <OperationLabel>{amount}</OperationLabel>
       </OperationForm>
     </Operation>
   );

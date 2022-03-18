@@ -10,10 +10,12 @@ import {
   OperationLabel,
 } from "../bodycomponents/Operation";
 import H2 from "../bodycomponents/H2";
-
+import { useRouter } from "next/router";
+import Content from "../../../Header/Content.json";
 const OperationWithdrawal = (props) => {
   const [withdrawalAmount, setWithdrawalAmount] = useState("");
-
+  const router = useRouter();
+  const { withdrawal, amount } = Content[router.locale];
   const { data, err } = useSWR("/api/user", async function (args) {
     const res = await fetch(args);
     return res.json();
@@ -40,7 +42,7 @@ const OperationWithdrawal = (props) => {
   };
   return (
     <Operation>
-      <H2>Withdralal</H2>
+      <H2>{withdrawal}</H2>
       <OperationForm
         onSubmit={withdrawalSubmit}
         css={css`
@@ -59,7 +61,7 @@ const OperationWithdrawal = (props) => {
             grid-row: 2;
           `}
         >
-          Amount
+          {amount}
         </OperationLabel>
       </OperationForm>
     </Operation>

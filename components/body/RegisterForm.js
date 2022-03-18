@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import Button from "./components/Button";
 import Input from "./components/Input";
 import Label from "./components/Label";
+import Languages from "../Header/Languages";
+import { useRouter } from "next/router";
+import Content from "../Header/Content.json";
 
 const RegisterForm = () => {
   const [fisrtname, setFisrtname] = useState("");
@@ -11,7 +14,8 @@ const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
+  const router = useRouter();
+  const { uname, pword, fname, lname, mail, register } = Content[router.locale];
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
   //   const response = await fetch("api/user", {
@@ -44,10 +48,10 @@ const RegisterForm = () => {
           text-align: center;
         `}
       >
-        Register
+        {register}
       </h1>
       <div>
-        <Label htmlFor="firstname">Firstname</Label>
+        <Label htmlFor="firstname">{fname}</Label>
         <Input
           type="text"
           name="firstname"
@@ -56,7 +60,7 @@ const RegisterForm = () => {
         />
       </div>
       <div>
-        <Label htmlFor="lastname">Lastname</Label>
+        <Label htmlFor="lastname">{lname}</Label>
         <Input
           type="text"
           name="lastname"
@@ -65,7 +69,7 @@ const RegisterForm = () => {
         />
       </div>
       <div>
-        <Label htmlFor="username">Username</Label>
+        <Label htmlFor="username">{uname}</Label>
         <Input
           type="text"
           name="username"
@@ -74,7 +78,7 @@ const RegisterForm = () => {
         />
       </div>
       <div>
-        <Label htmlFor="password">password</Label>
+        <Label htmlFor="password">{pword}</Label>
         <Input
           type="password"
           name="password"
@@ -83,7 +87,7 @@ const RegisterForm = () => {
         />
       </div>
       <div>
-        <Label htmlFor="email">E-mail:</Label>
+        <Label htmlFor="email">{mail}</Label>
         <Input
           type="email"
           name="email"

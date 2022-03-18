@@ -11,8 +11,12 @@ import {
 } from "../bodycomponents/Operation";
 import H2 from "../bodycomponents/H2";
 
+import { useRouter } from "next/router";
+import Content from "../../../Header/Content.json";
 const OperationLoan = (props) => {
   const [loanAmount, setLoanAmount] = useState("");
+  const router = useRouter();
+  const { requestloan, amount } = Content[router.locale];
 
   const { data, err } = useSWR("/api/user", async function (args) {
     const res = await fetch(args);
@@ -39,7 +43,7 @@ const OperationLoan = (props) => {
   };
   return (
     <Operation>
-      <H2>Request loan</H2>
+      <H2>{requestloan}</H2>
       <OperationForm
         onSubmit={loanSubmit}
         css={css`
@@ -58,7 +62,7 @@ const OperationLoan = (props) => {
             grid-row: 2;
           `}
         >
-          Amount
+          {amount}
         </OperationLabel>
       </OperationForm>
     </Operation>

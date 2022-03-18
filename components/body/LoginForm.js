@@ -4,10 +4,15 @@ import { css } from "@emotion/react";
 import Button from "./components/Button";
 import Input from "./components/Input";
 import Label from "./components/Label";
+import Languages from "../Header/Languages";
+import { useRouter } from "next/router";
+import Content from "../Header/Content.json";
+
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const router = useRouter();
+  const { uname, pword, login } = Content[router.locale];
   return (
     <form
       method="POST"
@@ -18,9 +23,9 @@ const LoginForm = () => {
         padding: 2em;
       `}
     >
-      <h1>Login</h1>
+      <h1>{login}</h1>
       <div>
-        <Label htmlFor="username">Username</Label>
+        <Label htmlFor="username">{uname}</Label>
         <Input
           type="text"
           name="username"
@@ -28,7 +33,7 @@ const LoginForm = () => {
         />
       </div>
       <div>
-        <Label htmlFor="password">Password</Label>
+        <Label htmlFor="password">{pword}</Label>
         <Input
           type="password"
           name="password"
