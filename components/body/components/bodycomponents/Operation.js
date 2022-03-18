@@ -7,9 +7,9 @@ const Operation = (props) => {
     <div
       css={css`
         border-radius: 1rem;
-        padding: 3rem 4rem;
+        padding: 2rem 3rem;
         color: #333;
-        background-image: linear-gradient(to top left, #2ce4b6, #2cd8e4);
+        background-image: linear-gradient(to top left, #2ce4b9, #2ce4b6);
       `}
       {...props}
     >
@@ -26,7 +26,7 @@ const OperationForm = (props) => {
         display: grid;
         grid-template-columns: 2fr 2fr 1fr;
         grid-template-rows: auto auto;
-        gap: 0.4rem 1rem;
+        gap: 1.5rem 1rem;
       `}
       {...props}
     >
@@ -89,7 +89,7 @@ const OperationLabel = (props) => {
       css={css`
         font-size: 1.3rem;
         text-align: center;
-        color: #fff;
+        color: #333;
       `}
       {...props}
     >

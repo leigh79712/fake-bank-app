@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { css } from "@emotion/react";
 import useSWR from "swr";
-import H2 from "./components/bodycomponents/H2";
 import type from "./Bankapp.module.css";
 
 import Balance from "./components/bankapp/Balance";
@@ -66,6 +65,7 @@ const Bankapp = () => {
       {/* operation */}
       <OperationTransfer />
       <OperationLoan />
+      <OperationDeposit />
       <OperationDeposit />
       <p
         css={css`

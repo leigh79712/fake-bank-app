@@ -18,6 +18,13 @@ const Balance = (props) => {
   movement.forEach(function (element) {
     sum += element;
   });
+  let loan = 0;
+  for (let e of data.movements) {
+    if (e.type === "loan") {
+      loan += +e.amount;
+    }
+  }
+  console.log(data);
 
   const now = new Date();
   const option = {
@@ -45,7 +52,7 @@ const Balance = (props) => {
       <div>
         <Pcurrentbalance>Loan</Pcurrentbalance>
 
-        <PBalance>{sum}€</PBalance>
+        <PBalance>{loan}€</PBalance>
       </div>
     </BalanceMain>
   );
