@@ -35,7 +35,7 @@ const PBalance = (props) => {
   return (
     <p
       css={css`
-        font-size: 4.5rem;
+        font-size: 3rem;
         font-weight: 400;
       `}
       {...props}
@@ -49,10 +49,10 @@ const BalanceMain = (props) => {
   return (
     <div
       css={css`
-        grid-column: 1 / span 2;
+        grid-column: 1 / span 3;
         display: flex;
         align-items: flex-end;
-        justify-content: space-between;
+        justify-content: space-around;
         margin-bottom: 2rem;
       `}
       {...props}

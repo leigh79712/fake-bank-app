@@ -9,7 +9,7 @@ const H2 = (props) => {
         margin-bottom: 1.5rem;
         font-size: 1.7rem;
         font-weight: 600;
-        color: #333;
+        color: #fff;
       `}
       {...props}
     >
