@@ -27,8 +27,6 @@ const Bankapp = () => {
 
   const move = [];
 
-  const id = data._id;
-
   for (let i = data.movements.length - 1; i > 0; i--) {
     move.push(
       <MovementsRow key={i}>
@@ -78,6 +76,13 @@ const Bankapp = () => {
         `}
       >
         <H2>Message</H2>
+        <div
+          css={css`
+            padding: 1rem 1rem;
+          `}
+        >
+          New message
+        </div>
       </div>
       <p
         css={css`

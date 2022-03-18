@@ -22,6 +22,8 @@ const OperationLoan = (props) => {
     const res = await fetch(args);
     return res.json();
   });
+  const id = data._id;
+
   const loanSubmit = (e) => {
     e.preventDefault();
     const mov = `amount=${+loanAmount}`;
@@ -47,7 +49,7 @@ const OperationLoan = (props) => {
       <OperationForm
         onSubmit={loanSubmit}
         css={css`
-          grid-template-columns: 2fr 1fr 2fr;
+          grid-template-columns: 2fr 2fr;
         `}
       >
         <OperationInput

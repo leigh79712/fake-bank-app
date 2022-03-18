@@ -20,6 +20,8 @@ const OperationWithdrawal = (props) => {
     const res = await fetch(args);
     return res.json();
   });
+  const id = data._id;
+
   const withdrawalSubmit = async (e) => {
     e.preventDefault();
     const mov = `amount=${+withdrawalAmount}`;
@@ -46,14 +48,14 @@ const OperationWithdrawal = (props) => {
       <OperationForm
         onSubmit={withdrawalSubmit}
         css={css`
-          grid-template-columns: 2.5fr 1fr 2.5fr;
+          grid-template-columns: 2fr 2fr;
         `}
       >
         <OperationInput
           type="number"
           name="amount"
           value={withdrawalAmount}
-          onChange={(e) => setDepositAmount(e.target.value)}
+          onChange={(e) => setWithdrawalAmount(e.target.value)}
         />
         <OperationButton type="submit">→</OperationButton>
         <OperationLabel

@@ -26,7 +26,7 @@ const OperationForm = (props) => {
         display: grid;
         grid-template-columns: 2fr 2fr 1fr;
         grid-template-rows: auto auto;
-        gap: 1.5rem 1rem;
+        gap: 1.5rem 4rem;
       `}
       {...props}
     >
@@ -49,6 +49,7 @@ const OperationInput = (props) => {
         padding: 0.3rem 1rem;
         border-radius: 0.7rem;
         transition: all 0.3s;
+        margin-right:2rem
         &:focus {
           outline: none;
           background-color: rgba(255, 255, 255, 0.6);
@@ -70,6 +71,7 @@ const OperationButton = (props) => {
         font-size: 1.8rem;
         background-color: #fff;
         cursor: pointer;
+        max-width: 3rem;
         transition: all 0.3s;
         &:focus {
           outline: none;

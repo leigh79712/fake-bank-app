@@ -22,6 +22,8 @@ const OperationTransfer = () => {
     const res = await fetch(args);
     return res.json();
   });
+  const id = data._id;
+
   const transferSubmit = (e) => {
     e.preventDefault();
     const mov = `amount=${+transferAmount}&username=${transferUsername}`;
