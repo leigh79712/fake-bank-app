@@ -12,12 +12,15 @@ import {
 import H2 from "../bodycomponents/H2";
 import { useRouter } from "next/router";
 import Content from "../../../Header/Content.json";
+import valued from "./Operation.module.css";
 
 const OperationTransfer = () => {
   const router = useRouter();
   const { transfer, amount, transferto } = Content[router.locale];
   const [transferUsername, setTransferUsername] = useState("");
   const [transferAmount, setTransferAmount] = useState("");
+  const [isValid, setIsValid] = useState(true);
+  const [usernameValid, setUsernameValid] = useState(true);
   const { data, err } = useSWR("/api/user", async function (args) {
     const res = await fetch(args);
     return res.json();
@@ -26,6 +29,15 @@ const OperationTransfer = () => {
 
   const transferSubmit = (e) => {
     e.preventDefault();
+    if (transferAmount.trim().length === 0 || transferAmount < 0) {
+      setIsValid(false);
+      return;
+    }
+
+    if (transferUsername.trim().length === 0) {
+      setUsernameValid(false);
+      return;
+    }
     const mov = `amount=${+transferAmount}&username=${transferUsername}`;
     const response = fetch(`/api/${id}/transfer`, {
       method: "POST",
@@ -52,13 +64,26 @@ const OperationTransfer = () => {
           type="text"
           name="username"
           value={transferUsername}
-          onChange={(e) => setTransferUsername(e.target.value)}
+          className={!usernameValid ? valued.isValued : valued.valued}
+          onChange={(e) => {
+            if (e.target.value.trim().length > 0) {
+              setUsernameValid(true);
+            }
+            setTransferUsername(e.target.value);
+          }}
         />
         <OperationInput
           type="number"
           name="amount"
           value={transferAmount}
-          onChange={(e) => setTransferAmount(e.target.value)}
+          min="0"
+          className={!isValid ? valued.isValued : valued.valued}
+          onChange={(e) => {
+            if (e.target.value.trim().length > 0) {
+              setIsValid(true);
+            }
+            setTransferAmount(e.target.value);
+          }}
         />
         <OperationButton>→</OperationButton>
         <OperationLabel>{transferto}</OperationLabel>

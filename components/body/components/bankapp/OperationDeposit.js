@@ -9,12 +9,14 @@ import {
   OperationButton,
   OperationLabel,
 } from "../bodycomponents/Operation";
+import valued from "./Operation.module.css";
 import H2 from "../bodycomponents/H2";
 import { useRouter } from "next/router";
 import Content from "../../../Header/Content.json";
 
 const OperationDeposit = (props) => {
   const [depositAmount, setDepositAmount] = useState("");
+  const [isValid, setIsValid] = useState(true);
   const router = useRouter();
   const { deposit, amount } = Content[router.locale];
   const { data, err } = useSWR("/api/user", async function (args) {
@@ -25,6 +27,11 @@ const OperationDeposit = (props) => {
 
   const depositSubmit = async (e) => {
     e.preventDefault();
+    if (depositAmount.trim().length === 0 || depositAmount < 0) {
+      setIsValid(false);
+      return;
+    }
+
     const mov = `amount=${+depositAmount}`;
     const response = fetch(`/api/${id}/deposit`, {
       method: "POST",
@@ -40,9 +47,9 @@ const OperationDeposit = (props) => {
       .catch((error) => {
         console.error("Error:", error);
       });
-
     setDepositAmount("");
   };
+
   return (
     <Operation>
       <H2>{deposit}</H2>
@@ -56,7 +63,14 @@ const OperationDeposit = (props) => {
           type="number"
           name="amount"
           value={depositAmount}
-          onChange={(e) => setDepositAmount(e.target.value)}
+          min="0"
+          className={!isValid ? valued.isValued : valued.valued}
+          onChange={(e) => {
+            if (e.target.value.trim().length > 0) {
+              setIsValid(true);
+            }
+            setDepositAmount(e.target.value);
+          }}
         />
         <OperationButton type="submit">→</OperationButton>
         <OperationLabel

@@ -12,8 +12,11 @@ import {
 import H2 from "../bodycomponents/H2";
 import { useRouter } from "next/router";
 import Content from "../../../Header/Content.json";
+import valued from "./Operation.module.css";
+
 const OperationWithdrawal = (props) => {
   const [withdrawalAmount, setWithdrawalAmount] = useState("");
+  const [isValid, setIsValid] = useState(true);
   const router = useRouter();
   const { withdrawal, amount } = Content[router.locale];
   const { data, err } = useSWR("/api/user", async function (args) {
@@ -24,6 +27,11 @@ const OperationWithdrawal = (props) => {
 
   const withdrawalSubmit = async (e) => {
     e.preventDefault();
+    if (withdrawalAmount.trim().length === 0 || withdrawalAmount < 0) {
+      setIsValid(false);
+      return;
+    }
+
     const mov = `amount=${+withdrawalAmount}`;
     const response = fetch(`/api/${id}/withdrawal`, {
       method: "POST",
@@ -55,7 +63,14 @@ const OperationWithdrawal = (props) => {
           type="number"
           name="amount"
           value={withdrawalAmount}
-          onChange={(e) => setWithdrawalAmount(e.target.value)}
+          min="0"
+          className={!isValid ? valued.isValued : valued.valued}
+          onChange={(e) => {
+            if (e.target.value.trim().length > 0) {
+              setIsValid(true);
+            }
+            setWithdrawalAmount(e.target.value);
+          }}
         />
         <OperationButton type="submit">→</OperationButton>
         <OperationLabel

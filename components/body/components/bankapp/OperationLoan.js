@@ -10,11 +10,14 @@ import {
   OperationLabel,
 } from "../bodycomponents/Operation";
 import H2 from "../bodycomponents/H2";
+import valued from "./Operation.module.css";
 
 import { useRouter } from "next/router";
 import Content from "../../../Header/Content.json";
 const OperationLoan = (props) => {
   const [loanAmount, setLoanAmount] = useState("");
+  const [isValid, setIsValid] = useState(true);
+
   const router = useRouter();
   const { requestloan, amount } = Content[router.locale];
 
@@ -26,6 +29,10 @@ const OperationLoan = (props) => {
 
   const loanSubmit = (e) => {
     e.preventDefault();
+    if (loanAmount.trim().length === 0 || loanAmount < 0) {
+      setIsValid(false);
+      return;
+    }
     const mov = `amount=${+loanAmount}`;
     const response = fetch(`/api/${id}/loan`, {
       method: "POST",
@@ -56,7 +63,14 @@ const OperationLoan = (props) => {
           type="number"
           name="amount"
           value={loanAmount}
-          onChange={(e) => setLoanAmount(e.target.value)}
+          min="0"
+          className={!isValid ? valued.isValued : valued.valued}
+          onChange={(e) => {
+            if (e.target.value.trim().length > 0) {
+              setIsValid(true);
+            }
+            setLoanAmount(e.target.value);
+          }}
         />
         <OperationButton>→</OperationButton>
         <OperationLabel

@@ -1,0 +1,9 @@
+.isValued,
+.isValued:focus {
+  background-color: pink;
+  color: pink;
+}
+
+.valued {
+  background-color: rgba(255, 255, 255, 0.4);
+}

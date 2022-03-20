@@ -37,11 +37,9 @@ const OperationForm = (props) => {
 const OperationInput = (props) => {
   return (
     <input
-      action=""
       css={css`
         width: 100%;
         border: none;
-        background-color: rgba(255, 255, 255, 0.4);
         font-family: inherit;
         font-size: 1.5rem;
         text-align: center;
@@ -49,7 +47,7 @@ const OperationInput = (props) => {
         padding: 0.3rem 1rem;
         border-radius: 0.7rem;
         transition: all 0.3s;
-        margin-right:2rem
+        margin-right: 2rem;
         &:focus {
           outline: none;
           background-color: rgba(255, 255, 255, 0.6);

@@ -95,7 +95,7 @@ const RegisterForm = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <Button type="submit">Submit</Button>
+      <Button type="submit">{register}</Button>
     </form>
   );
 };
