@@ -6,7 +6,7 @@ const SummaryMain = (props) => {
   return (
     <div
       css={css`
-        grid-row: 5 / 6;
+        grid-row: 5 /6;
         display: flex;
         align-items: baseline;
         padding: 0 0.3rem;
