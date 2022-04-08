@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import Button from "./components/Button";
-import SectionHeader from "./components/SectionHeader";
+import { Button, SectionHeader } from "components/Common";
 import { useRouter } from "next/router";
 import Content from "./Content.json";
 const JoinToday = () => {

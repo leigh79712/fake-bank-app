@@ -2,7 +2,7 @@
 import { css } from "@emotion/react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../public/images/icon-light.png";
+import logo from "public/images/icon-light.png";
 import { useRouter } from "next/router";
 import Content from "./Content.json";
 

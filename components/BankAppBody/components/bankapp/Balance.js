@@ -9,7 +9,7 @@ import {
   BalanceMain,
 } from "../bodycomponents/Balance";
 import { useRouter } from "next/router";
-import Content from "../../../Header/Content.json";
+import Content from "../../Content.json";
 
 const Balance = (props) => {
   const router = useRouter();

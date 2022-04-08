@@ -9,7 +9,7 @@ import {
   SummaryButton,
 } from "../bodycomponents/Summary";
 import { useRouter } from "next/router";
-import Content from "../../../Header/Content.json";
+import Content from "../../Content.json";
 
 const Summary = (props) => {
   const router = useRouter();

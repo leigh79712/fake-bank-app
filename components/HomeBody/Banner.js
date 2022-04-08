@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import Image from "next/image";
 import { css } from "@emotion/react";
-import Button from "./components/Button";
+import { Button } from "components/Common";
 import card from "../../public/images/card.jpeg";
 import { useRouter } from "next/router";
 import Content from "./Content.json";

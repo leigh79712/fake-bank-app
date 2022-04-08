@@ -1,0 +1,12 @@
+{
+  "en-US": {
+    "login": "Login",
+    "usernameText": "Username",
+    "passwordText": "Password"
+  },
+  "zh-TW": {
+    "login": "登入",
+    "usernameText": "會員代號",
+    "passwordText": "密碼"
+  }
+}

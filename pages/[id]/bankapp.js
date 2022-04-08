@@ -1,6 +1,7 @@
 import React from "react";
-import Bankapp from "../../components/body/Bankapp";
-const bankapp = () => {
-  return <Bankapp />;
+import { Dashboard } from "components/BankAppBody";
+
+const BankApp = () => {
+  return <Dashboard />;
 };
-export default bankapp;
+export default BankApp;

@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Image from "next/image";
-import SectionTitle from "./components/SectionTitle";
-import SectionHeader from "./components/SectionHeader";
+import { SectionTitle, SectionHeader } from "components/Common";
 import bank from "../../public/images/bank.jpeg";
 import saving from "../../public/images/saving.jpeg";
 import piggybank from "../../public/images/piggybank.jpeg";

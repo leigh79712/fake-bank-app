@@ -10,30 +10,31 @@ import {
   OperationLabel,
 } from "../bodycomponents/Operation";
 import H2 from "../bodycomponents/H2";
-import { useRouter } from "next/router";
-import Content from "../../../Header/Content.json";
 import valued from "./Operation.module.css";
 
-const OperationWithdrawal = (props) => {
-  const [withdrawalAmount, setWithdrawalAmount] = useState("");
+import { useRouter } from "next/router";
+import Content from "../../Content.json";
+const OperationLoan = (props) => {
+  const [loanAmount, setLoanAmount] = useState("");
   const [isValid, setIsValid] = useState(true);
+
   const router = useRouter();
-  const { withdrawal, amount } = Content[router.locale];
+  const { requestLoan, amount } = Content[router.locale];
+
   const { data, err } = useSWR("/api/user", async function (args) {
     const res = await fetch(args);
     return res.json();
   });
   const id = data._id;
 
-  const withdrawalSubmit = async (e) => {
+  const loanSubmit = (e) => {
     e.preventDefault();
-    if (withdrawalAmount.trim().length === 0 || withdrawalAmount < 0) {
+    if (loanAmount.trim().length === 0 || loanAmount < 0) {
       setIsValid(false);
       return;
     }
-
-    const mov = `amount=${+withdrawalAmount}`;
-    const response = fetch(`/api/${id}/withdrawal`, {
+    const mov = `amount=${+loanAmount}`;
+    const response = fetch(`/api/${id}/loan`, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -47,14 +48,13 @@ const OperationWithdrawal = (props) => {
       .catch((error) => {
         console.error("Error:", error);
       });
-
-    setWithdrawalAmount("");
+    setLoanAmount("");
   };
   return (
     <Operation>
-      <H2>{withdrawal}</H2>
+      <H2>{requestLoan}</H2>
       <OperationForm
-        onSubmit={withdrawalSubmit}
+        onSubmit={loanSubmit}
         css={css`
           grid-template-columns: 2fr 2fr;
         `}
@@ -62,17 +62,17 @@ const OperationWithdrawal = (props) => {
         <OperationInput
           type="number"
           name="amount"
-          value={withdrawalAmount}
+          value={loanAmount}
           min="0"
           className={!isValid ? valued.isValued : valued.valued}
           onChange={(e) => {
             if (e.target.value.trim().length > 0) {
               setIsValid(true);
             }
-            setWithdrawalAmount(e.target.value);
+            setLoanAmount(e.target.value);
           }}
         />
-        <OperationButton type="submit">→</OperationButton>
+        <OperationButton>→</OperationButton>
         <OperationLabel
           css={css`
             grid-row: 2;
@@ -85,4 +85,4 @@ const OperationWithdrawal = (props) => {
   );
 };
 
-export default OperationWithdrawal;
+export default OperationLoan;

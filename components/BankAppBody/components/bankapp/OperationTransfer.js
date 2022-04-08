@@ -11,7 +11,7 @@ import {
 } from "../bodycomponents/Operation";
 import H2 from "../bodycomponents/H2";
 import { useRouter } from "next/router";
-import Content from "../../../Header/Content.json";
+import Content from "../../Content.json";
 import valued from "./Operation.module.css";
 
 const OperationTransfer = () => {

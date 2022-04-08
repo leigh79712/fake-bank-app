@@ -1,7 +1,4 @@
-import JoinToday from "components/body/JoinToday";
-import Operation from "components/body/operation";
-import Banner from "../components/body/Banner";
-import Feature from "../components/body/Feature";
+import { Banner, Feature, Operation, JoinToday } from "components/HomeBody";
 
 const Index = () => {
   return (

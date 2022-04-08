@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import SectionTitle from "./components/SectionTitle";
-import SectionHeader from "./components/SectionHeader";
+import { SectionTitle, SectionHeader } from "components/Common";
 import Image from "next/image";
 import icon1 from "../../public/images/icon1.png";
 import icon2 from "../../public/images/icon2.png";

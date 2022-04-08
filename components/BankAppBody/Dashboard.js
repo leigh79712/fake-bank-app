@@ -21,8 +21,8 @@ import OperationLoan from "./components/bankapp/OperationLoan";
 import OperationDeposit from "./components/bankapp/OperationDeposit";
 import OperationWithdrawal from "./components/bankapp/OperationWithdrawal";
 import Countdown from "react-countdown";
-import LoginForm from "./LoginForm";
-const Bankapp = () => {
+
+const Dashboard = () => {
   const { data, err } = useSWR("/api/user", async function (args) {
     const res = await fetch(args);
     return res.json();
@@ -137,4 +137,4 @@ const Bankapp = () => {
   );
 };
 
-export default Bankapp;
+export default Dashboard;

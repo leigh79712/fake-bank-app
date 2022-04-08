@@ -1,6 +1,5 @@
 import React from "react";
-
-import LoginForm from "/components/body/LoginForm";
+import { LoginForm } from "components/LoginBody";
 
 const login = () => {
   return <LoginForm />;

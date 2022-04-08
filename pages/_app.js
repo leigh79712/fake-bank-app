@@ -2,7 +2,7 @@ import { StrictMode, useEffect, useState } from "react";
 import { ThemeProvider } from "@emotion/react";
 import GlobalStyle from "styles/index";
 import { lightTheme, darkTheme } from "styles/theme";
-import Layout from "../components/Layout";
+import { Layout } from "components/Common";
 
 const App = ({ Component, pageProps }) => {
   const { session } = pageProps;
