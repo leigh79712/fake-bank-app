@@ -16,7 +16,7 @@ import valued from "./Operation.module.css";
 
 const OperationTransfer = () => {
   const router = useRouter();
-  const { transfer, amount, transferto } = Content[router.locale];
+  const { transfer, amount, transferTo } = Content[router.locale];
   const [transferUsername, setTransferUsername] = useState("");
   const [transferAmount, setTransferAmount] = useState("");
   const [isValid, setIsValid] = useState(true);
@@ -86,7 +86,7 @@ const OperationTransfer = () => {
           }}
         />
         <OperationButton>→</OperationButton>
-        <OperationLabel>{transferto}</OperationLabel>
+        <OperationLabel>{transferTo}</OperationLabel>
         <OperationLabel>{amount}</OperationLabel>
       </OperationForm>
     </Operation>

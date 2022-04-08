@@ -19,7 +19,7 @@ const OperationLoan = (props) => {
   const [isValid, setIsValid] = useState(true);
 
   const router = useRouter();
-  const { requestloan, amount } = Content[router.locale];
+  const { requestLoan, amount } = Content[router.locale];
 
   const { data, err } = useSWR("/api/user", async function (args) {
     const res = await fetch(args);
@@ -52,7 +52,7 @@ const OperationLoan = (props) => {
   };
   return (
     <Operation>
-      <H2>{requestloan}</H2>
+      <H2>{requestLoan}</H2>
       <OperationForm
         onSubmit={loanSubmit}
         css={css`

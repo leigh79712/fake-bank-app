@@ -1,20 +1,17 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
 import { css } from "@emotion/react";
-import Link from "next/link";
 import Image from "next/image";
 import SectionTitle from "./components/SectionTitle";
 import SectionHeader from "./components/SectionHeader";
 import bank from "../../public/images/bank.jpeg";
 import saving from "../../public/images/saving.jpeg";
 import piggybank from "../../public/images/piggybank.jpeg";
-import Languages from "../Header/Languages";
 import { useRouter } from "next/router";
-import Content from "../Header/Content.json";
+import Content from "./Content.json";
 
 const Feature = () => {
   const router = useRouter();
-  const { feature, featureheader, feature1, feature2, feature3 } =
+  const { feature, featureHeader, feature1, feature2, feature3 } =
     Content[router.locale];
   return (
     <div
@@ -23,7 +20,7 @@ const Feature = () => {
       `}
     >
       <SectionTitle>{feature}</SectionTitle>
-      <SectionHeader>{featureheader}</SectionHeader>
+      <SectionHeader>{featureHeader}</SectionHeader>
       <div
         css={css`
           margin: 4em auto;

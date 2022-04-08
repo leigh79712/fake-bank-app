@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
 import { css } from "@emotion/react";
 import SectionTitle from "./components/SectionTitle";
 import SectionHeader from "./components/SectionHeader";
@@ -7,18 +6,17 @@ import Image from "next/image";
 import icon1 from "../../public/images/icon1.png";
 import icon2 from "../../public/images/icon2.png";
 import icon3 from "../../public/images/icon3.png";
-import Languages from "../Header/Languages";
 import { useRouter } from "next/router";
-import Content from "../Header/Content.json";
+import Content from "./Content.json";
 
 const Operation = () => {
   const router = useRouter();
-  const { operations, operationheader, operation1, operation2, operation3 } =
+  const { operations, operationHeader, operation1, operation2, operation3 } =
     Content[router.locale];
   return (
     <>
       <SectionTitle>{operations}</SectionTitle>
-      <SectionHeader>{operationheader}</SectionHeader>
+      <SectionHeader>{operationHeader}</SectionHeader>
       <div
         css={css`
           padding: 4em 12em;

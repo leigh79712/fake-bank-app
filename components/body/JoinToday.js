@@ -1,21 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
 import { css } from "@emotion/react";
 import Button from "./components/Button";
 import SectionHeader from "./components/SectionHeader";
-import Languages from "../Header/Languages";
 import { useRouter } from "next/router";
-import Content from "../Header/Content.json";
+import Content from "./Content.json";
 const JoinToday = () => {
   const router = useRouter();
-  const { jointodayheader, joinus } = Content[router.locale];
+  const { joinTodayHeader, joinUs } = Content[router.locale];
   return (
     <div
       css={css`
         margin: 6em 0;
       `}
     >
-      <SectionHeader>{jointodayheader}</SectionHeader>
+      <SectionHeader>{joinTodayHeader}</SectionHeader>
       <div
         css={css`
           text-align: center;
@@ -28,7 +26,7 @@ const JoinToday = () => {
             border-radius: 50px;
           `}
         >
-          {joinus}
+          {joinUs}
         </Button>
       </div>
     </div>

@@ -1,17 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { css } from "@emotion/react";
 import Button from "./components/Button";
 import card from "../../public/images/card.jpeg";
-import Languages from "../Header/Languages";
 import { useRouter } from "next/router";
-import Content from "../Header/Content.json";
+import Content from "./Content.json";
 
 const Banner = () => {
   const router = useRouter();
-  const { bannerh1, bannerh4, register } = Content[router.locale];
+  const { bannerH1, bannerH4, register } = Content[router.locale];
 
   return (
     <div
@@ -36,7 +33,7 @@ const Banner = () => {
       >
         <div>
           <h1
-            dangerouslySetInnerHTML={{ __html: bannerh1 }}
+            dangerouslySetInnerHTML={{ __html: bannerH1 }}
             css={css`
               font-size: 5.5rem;
               line-height: 1.35;
@@ -49,7 +46,7 @@ const Banner = () => {
               font-weight: 500;
             `}
           >
-            {bannerh4}
+            {bannerH4}
           </h4>
           <Button>{register}</Button>
         </div>

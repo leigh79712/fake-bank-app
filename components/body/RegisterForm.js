@@ -1,21 +1,21 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
-import React, { useState } from "react";
+import { css } from "@emotion/react";
+import { useState } from "react";
 import Button from "./components/Button";
 import Input from "./components/Input";
 import Label from "./components/Label";
-import Languages from "../Header/Languages";
 import { useRouter } from "next/router";
-import Content from "../Header/Content.json";
+import Content from "./Content.json";
 
 const RegisterForm = () => {
   const [fisrtname, setFisrtname] = useState("");
-  const [lastname, setLastname] = useState("");
+  const [lastname, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const router = useRouter();
-  const { uname, pword, fname, lname, mail, register } = Content[router.locale];
+  const { usernameText, passwordText, firstName, lastName, mail, register } =
+    Content[router.locale];
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
   //   const response = await fetch("api/user", {
@@ -51,25 +51,25 @@ const RegisterForm = () => {
         {register}
       </h1>
       <div>
-        <Label htmlFor="firstname">{fname}</Label>
+        <Label htmlFor="firstName">{firstName}</Label>
         <Input
           type="text"
-          name="firstname"
+          name="firstName"
           value={fisrtname}
           onChange={(e) => setFisrtname(e.target.value)}
         />
       </div>
       <div>
-        <Label htmlFor="lastname">{lname}</Label>
+        <Label htmlFor="lastname">{lastName}</Label>
         <Input
           type="text"
           name="lastname"
           value={lastname}
-          onChange={(e) => setLastname(e.target.value)}
+          onChange={(e) => setLastName(e.target.value)}
         />
       </div>
       <div>
-        <Label htmlFor="username">{uname}</Label>
+        <Label htmlFor="username">{usernameText}</Label>
         <Input
           type="text"
           name="username"
@@ -78,7 +78,7 @@ const RegisterForm = () => {
         />
       </div>
       <div>
-        <Label htmlFor="password">{pword}</Label>
+        <Label htmlFor="password">{passwordText}</Label>
         <Input
           type="password"
           name="password"

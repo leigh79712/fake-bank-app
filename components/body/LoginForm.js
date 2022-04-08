@@ -1,18 +1,17 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
+import { useState } from "react";
 import { css } from "@emotion/react";
 import Button from "./components/Button";
 import Input from "./components/Input";
 import Label from "./components/Label";
-import Languages from "../Header/Languages";
 import { useRouter } from "next/router";
-import Content from "../Header/Content.json";
+import Content from "./Content.json";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  const { uname, pword, login } = Content[router.locale];
+  const { usernameText, passwordText, login } = Content[router.locale];
   return (
     <form
       method="POST"
@@ -25,7 +24,7 @@ const LoginForm = () => {
     >
       <h1>{login}</h1>
       <div>
-        <Label htmlFor="username">{uname}</Label>
+        <Label htmlFor="username">{usernameText}</Label>
         <Input
           type="text"
           name="username"
@@ -33,7 +32,7 @@ const LoginForm = () => {
         />
       </div>
       <div>
-        <Label htmlFor="password">{pword}</Label>
+        <Label htmlFor="password">{passwordText}</Label>
         <Input
           type="password"
           name="password"

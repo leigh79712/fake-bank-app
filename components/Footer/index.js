@@ -3,13 +3,13 @@ import { css } from "@emotion/react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/images/icon-light.png";
-import Languages from "../Header/Languages";
 import { useRouter } from "next/router";
-import Content from "../Header/Content.json";
+import Content from "./Content.json";
 
 const Footer = () => {
   const router = useRouter();
-  const { footerlinks } = Content[router.locale];
+  const { footerLinks } = Content[router.locale];
+
   return (
     <footer
       css={css`
@@ -26,7 +26,7 @@ const Footer = () => {
           margin-bottom: 5rem;
         `}
       >
-        {footerlinks.map((link) => (
+        {footerLinks.map((link) => (
           <li key={link.name}>
             <Link href={link.url}>
               <a
