@@ -32,16 +32,19 @@ const Bankapp = () => {
 
   // Random component
   const completionist = useCallback((e) => {
-    fetch("/logout").then((res) => {
+    fetch("/logout").then(async (res) => {
       // Do a fast client-side transition to the already prefetched dashboard page
       if (res.ok) {
-        router.push("/login");
+        await router.push("/login");
+        router.reload();
       }
     });
   }, []);
-  useEffect(() => {
+
+  useEffect(async () => {
     // Prefetch the dashboard page
-    router.prefetch("/login");
+
+    await router.prefetch("/login");
   }, []);
 
   const renderer = ({ minutes, seconds, completed }) => {

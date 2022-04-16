@@ -3,10 +3,12 @@ import { ThemeProvider } from "@emotion/react";
 import GlobalStyle from "styles/index";
 import { lightTheme, darkTheme } from "styles/theme";
 import Layout from "../components/Layout";
+import useSWR from "swr";
 
 const App = ({ Component, pageProps }) => {
   const { session } = pageProps;
   const [theme, setTheme] = useState("light");
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const toggleTheme = () => {
     if (theme === "light") {
@@ -17,6 +19,19 @@ const App = ({ Component, pageProps }) => {
       setTheme("light");
     }
   };
+  const { data, err } = useSWR("/api/user", async function (args) {
+    const res = await fetch(args);
+    return res.json();
+  });
+
+  useEffect(() => {
+    if (!data) {
+      setLoggedIn(false);
+    }
+    if (data) {
+      setLoggedIn(true);
+    }
+  }, [data]);
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem("theme");
@@ -30,7 +45,12 @@ const App = ({ Component, pageProps }) => {
         theme={theme === "light" ? lightTheme : darkTheme}
       >
         <GlobalStyle />
-        <Layout themeState={theme} toggleTheme={toggleTheme}>
+        <Layout
+          data={data}
+          loggedIn={loggedIn}
+          themeState={theme}
+          toggleTheme={toggleTheme}
+        >
           <Component {...pageProps} />
         </Layout>
       </ThemeProvider>

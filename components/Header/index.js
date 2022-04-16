@@ -10,20 +10,11 @@ import { useRouter } from "next/router";
 import Content from "./Content.json";
 import useSWR from "swr";
 
-const Header = ({ themeState, toggleTheme }) => {
+const Header = ({ themeState, toggleTheme, loggedIn, data }) => {
   const [opacity, setOpacity] = useState(1);
   const router = useRouter();
   const theme = useTheme();
   const { links, login, register, logout } = Content[router.locale];
-  const { data, err } = useSWR("/api/user", async function (args) {
-    const res = await fetch(args);
-    return res.json();
-  });
-  let loggedIn = false;
-  if (!data) loggedIn = false;
-  if (data) {
-    loggedIn = true;
-  }
 
   const mouseEnter = (e) => {
     e.target.style.opacity = 1;
