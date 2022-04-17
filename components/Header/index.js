@@ -3,12 +3,10 @@ import { useState } from "react";
 import { css, useTheme } from "@emotion/react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../public/images/logo-light.png";
 import ThemeButton from "./ThemeButton";
 import Languages from "./Languages";
 import { useRouter } from "next/router";
 import Content from "./Content.json";
-import useSWR from "swr";
 
 const Header = ({ themeState, toggleTheme, loggedIn, data }) => {
   const [opacity, setOpacity] = useState(1);
@@ -43,7 +41,7 @@ const Header = ({ themeState, toggleTheme, loggedIn, data }) => {
     >
       <a>
         <Image
-          src={logo}
+          src={theme.logo}
           alt="logo"
           height={60}
           width={130}

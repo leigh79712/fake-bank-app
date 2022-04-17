@@ -29,7 +29,7 @@ const OperationTransfer = () => {
 
   const transferSubmit = (e) => {
     e.preventDefault();
-    if (transferAmount.trim().length === 0 || transferAmount < 0) {
+    if (transferAmount.trim().length === 0 || transferAmount <= 0) {
       setIsValid(false);
       return;
     }

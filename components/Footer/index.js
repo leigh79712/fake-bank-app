@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css, useTheme } from "@emotion/react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../public/images/icon-light.png";
 import Languages from "../Header/Languages";
 import { useRouter } from "next/router";
 import Content from "../Header/Content.json";
 
 const Footer = () => {
   const router = useRouter();
+  const theme = useTheme();
   const { footerlinks } = Content[router.locale];
   return (
     <footer
@@ -42,7 +42,7 @@ const Footer = () => {
           </li>
         ))}
       </ul>
-      <Image src={logo} alt="logo" width={130} height={130} />
+      <Image src={theme.icon} alt="logo" width={130} height={130} />
       <p
         css={css`
           font-size: 1.4rem;

@@ -29,7 +29,7 @@ const OperationLoan = (props) => {
 
   const loanSubmit = (e) => {
     e.preventDefault();
-    if (loanAmount.trim().length === 0 || loanAmount < 0) {
+    if (loanAmount.trim().length === 0 || loanAmount <= 0) {
       setIsValid(false);
       return;
     }

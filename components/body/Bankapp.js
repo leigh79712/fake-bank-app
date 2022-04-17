@@ -21,7 +21,7 @@ import OperationLoan from "./components/bankapp/OperationLoan";
 import OperationDeposit from "./components/bankapp/OperationDeposit";
 import OperationWithdrawal from "./components/bankapp/OperationWithdrawal";
 import Countdown from "react-countdown";
-import LoginForm from "./LoginForm";
+
 const Bankapp = () => {
   const { data, err } = useSWR("/api/user", async function (args) {
     const res = await fetch(args);
@@ -33,17 +33,14 @@ const Bankapp = () => {
   // Random component
   const completionist = useCallback((e) => {
     fetch("/logout").then(async (res) => {
-      // Do a fast client-side transition to the already prefetched dashboard page
       if (res.ok) {
         await router.push("/login");
-        router.reload();
+        await router.reload();
       }
     });
   }, []);
 
   useEffect(async () => {
-    // Prefetch the dashboard page
-
     await router.prefetch("/login");
   }, []);
 
@@ -54,7 +51,7 @@ const Bankapp = () => {
     // Render a countdown
     return (
       <span>
-        {minutes}:{seconds}
+        " You will be logged out in " {minutes}:{seconds}
       </span>
     );
   };
@@ -85,6 +82,9 @@ const Bankapp = () => {
         grid-template-columns: 4fr 2fr 2fr;
         grid-template-rows: auto repeat(3, 15rem) auto;
         gap: 2rem;
+        background-color: #ffffffad;
+        padding: 3em;
+        border-radius: 3em;
       `}
     >
       {/* blance */}
@@ -127,9 +127,8 @@ const Bankapp = () => {
           grid-row: span 2;
         `}
       >
-        " You will be logged out in "
         <Countdown
-          date={Date.now() + 30000}
+          date={Date.now() + 300000}
           renderer={renderer}
           css={css`
             font-weight: 600;

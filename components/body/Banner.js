@@ -2,17 +2,15 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { css } from "@emotion/react";
+import { css, useTheme } from "@emotion/react";
 import Button from "./components/Button";
-import card from "../../public/images/card.jpeg";
-import Languages from "../Header/Languages";
 import { useRouter } from "next/router";
 import Content from "../Header/Content.json";
 
 const Banner = () => {
   const router = useRouter();
   const { bannerh1, bannerh4, register } = Content[router.locale];
-
+  const theme = useTheme();
   return (
     <div
       css={css`
@@ -51,10 +49,23 @@ const Banner = () => {
           >
             {bannerh4}
           </h4>
-          <Button>{register}</Button>
+          <Link href="/register">
+            <a
+              css={css`
+                background-color: #2ec4b6;
+                color: #fff;
+                border-radius: 20px;
+                border: none;
+                padding: 1em 2em;
+                cursor: pointer;
+              `}
+            >
+              {register}
+            </a>
+          </Link>
         </div>
         <div>
-          <Image src={card} alt="card"></Image>
+          <Image width={500} height={350} src={theme.card} alt="card"></Image>
         </div>
       </div>
     </div>

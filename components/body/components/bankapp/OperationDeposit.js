@@ -27,7 +27,7 @@ const OperationDeposit = (props) => {
 
   const depositSubmit = async (e) => {
     e.preventDefault();
-    if (depositAmount.trim().length === 0 || depositAmount < 0) {
+    if (depositAmount.trim().length === 0 || depositAmount <= 0) {
       setIsValid(false);
       return;
     }
