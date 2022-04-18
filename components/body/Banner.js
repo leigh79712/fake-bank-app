@@ -7,10 +7,11 @@ import Button from "./components/Button";
 import { useRouter } from "next/router";
 import Content from "../Header/Content.json";
 
-const Banner = () => {
+const Banner = ({ loggedIn, data }) => {
   const router = useRouter();
-  const { bannerh1, bannerh4, register } = Content[router.locale];
+  const { bannerh1, bannerh4, register, myapp } = Content[router.locale];
   const theme = useTheme();
+  console.log(loggedIn);
   return (
     <div
       css={css`
@@ -49,20 +50,38 @@ const Banner = () => {
           >
             {bannerh4}
           </h4>
-          <Link href="/register">
-            <a
-              css={css`
-                background-color: #2ec4b6;
-                color: #fff;
-                border-radius: 20px;
-                border: none;
-                padding: 1em 2em;
-                cursor: pointer;
-              `}
-            >
-              {register}
-            </a>
-          </Link>
+          {!loggedIn && (
+            <Link href="/register">
+              <a
+                css={css`
+                  background-color: #2ec4b6;
+                  color: #fff;
+                  border-radius: 20px;
+                  border: none;
+                  padding: 1em 2em;
+                  cursor: pointer;
+                `}
+              >
+                {register}
+              </a>
+            </Link>
+          )}
+          {loggedIn && (
+            <Link href={`/${data._id}/bankapp`}>
+              <a
+                css={css`
+                  background-color: #2ec4b6;
+                  color: #fff;
+                  border-radius: 20px;
+                  border: none;
+                  padding: 1em 2em;
+                  cursor: pointer;
+                `}
+              >
+                {myapp}
+              </a>
+            </Link>
+          )}
         </div>
         <div>
           <Image width={500} height={350} src={theme.card} alt="card"></Image>

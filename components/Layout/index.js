@@ -2,14 +2,7 @@ import React, { useState } from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 
-const Layout = ({
-  themeState,
-  toggleTheme,
-  loggedIn,
-  setLoggedIn,
-  data,
-  children,
-}) => {
+const Layout = ({ themeState, toggleTheme, loggedIn, data, ...props }) => {
   return (
     <>
       <Header
@@ -18,7 +11,7 @@ const Layout = ({
         toggleTheme={toggleTheme}
         data={data}
       />
-      <main>{children}</main>
+      <main loggedIn={loggedIn}>{props.children}</main>
       <Footer />
     </>
   );

@@ -39,20 +39,23 @@ const Header = ({ themeState, toggleTheme, loggedIn, data }) => {
         }
       `}
     >
-      <a>
-        <Image
-          src={theme.logo}
-          alt="logo"
-          height={60}
-          width={130}
-          css={css`
-            transition: all 0.3s;
-            opacity: ${opacity};
-          `}
-          onMouseEnter={mouseEnter}
-          onMouseOut={mouseOut}
-        />
-      </a>
+      <Link href="/">
+        <a>
+          <Image
+            src={theme.logo}
+            alt="logo"
+            height={60}
+            width={130}
+            css={css`
+              transition: all 0.3s;
+              opacity: ${opacity};
+            `}
+            onMouseEnter={mouseEnter}
+            onMouseOut={mouseOut}
+          />
+        </a>
+      </Link>
+
       <ul
         css={css`
           display: flex;
@@ -184,16 +187,11 @@ const Header = ({ themeState, toggleTheme, loggedIn, data }) => {
                   font-weight: 400;
                   color: #fff;
                   text-decoration: none;
-                  display: block;
-                  transition: all 0.3s;
                   cursor: pointer;
-                  opacity: ${opacity};
                   background-color: #2ec4b6;
                   padding: 0.5em;
                   border-radius: 5px;
                 `}
-                onMouseEnter={mouseEnter}
-                onMouseOut={mouseOut}
               >
                 {register}
               </a>

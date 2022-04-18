@@ -73,6 +73,7 @@ const MovementsValue = (props) => {
       css={css`
         font-size: 1.7rem;
         margin-left: auto;
+        color: #23272f;
       `}
       {...props}
     >

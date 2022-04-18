@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
 import { css } from "@emotion/react";
-import Button from "./components/Button";
+import Link from "next/link";
 import SectionHeader from "./components/SectionHeader";
-import Languages from "../Header/Languages";
+
 import { useRouter } from "next/router";
 import Content from "../Header/Content.json";
-const JoinToday = () => {
+const JoinToday = ({ loggedIn, data }) => {
   const router = useRouter();
   const { jointodayheader, joinus } = Content[router.locale];
   return (
@@ -19,17 +19,24 @@ const JoinToday = () => {
       <div
         css={css`
           text-align: center;
+          margin: 5em;
         `}
       >
-        <Button
-          css={css`
-            margin: 2em;
-            font-size: 1.5em;
-            border-radius: 50px;
-          `}
-        >
-          {joinus}
-        </Button>
+        <Link href="/register">
+          <a
+            css={css`
+              font-size: 1.5em;
+              border-radius: 50px;
+              background-color: #2ec4b6;
+              padding: 1em 3em;
+              color: #fff;
+              text-decoration: none;
+              cursor: pointer;
+            `}
+          >
+            {joinus}
+          </a>
+        </Link>
       </div>
     </div>
   );

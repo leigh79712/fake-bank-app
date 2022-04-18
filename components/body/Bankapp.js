@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 import { useRouter } from "next/router";
-import { css } from "@emotion/react";
+import { css, useTheme } from "@emotion/react";
 import useSWR from "swr";
 import type from "./Bankapp.module.css";
 import H2 from "./components/bodycomponents/H2";
@@ -29,6 +29,7 @@ const Bankapp = () => {
   });
   const move = [];
   const router = useRouter();
+  const theme = useTheme();
 
   // Random component
   const completionist = useCallback((e) => {
@@ -82,7 +83,7 @@ const Bankapp = () => {
         grid-template-columns: 4fr 2fr 2fr;
         grid-template-rows: auto repeat(3, 15rem) auto;
         gap: 2rem;
-        background-color: #ffffffad;
+
         padding: 3em;
         border-radius: 3em;
       `}
@@ -101,7 +102,7 @@ const Bankapp = () => {
       <div
         css={css`
           grid-column: 2 / span 2;
-          /* background-color: #f4f4f479; */
+          background-image: linear-gradient(to top left, #2ce4b9, #2ce4b6);
           border-radius: 1rem;
           padding: 2rem 3rem;
           color: #333;
@@ -112,6 +113,7 @@ const Bankapp = () => {
           css={css`
             padding: 1rem 1rem;
             overflow: scroll;
+            color: ${theme.color};
           `}
         >
           New message
