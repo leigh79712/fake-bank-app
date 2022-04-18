@@ -10,7 +10,7 @@ const Index = ({ loggedIn, data }) => {
       <Banner loggedIn={loggedIn} data={data}></Banner>
       <Feature></Feature>
       <Operation></Operation>
-      <JoinToday></JoinToday>
+      <JoinToday loggedIn={loggedIn} data={data}></JoinToday>
     </main>
   );
 };

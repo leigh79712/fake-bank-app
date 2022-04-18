@@ -51,7 +51,7 @@ const App = ({ Component, pageProps }) => {
           themeState={theme}
           toggleTheme={toggleTheme}
         >
-          <Component {...pageProps} />
+          <Component {...pageProps} loggedIn={loggedIn} data={data} />
         </Layout>
       </ThemeProvider>
     </StrictMode>

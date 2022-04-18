@@ -11,7 +11,7 @@ const Layout = ({ themeState, toggleTheme, loggedIn, data, ...props }) => {
         toggleTheme={toggleTheme}
         data={data}
       />
-      <main loggedIn={loggedIn}>{props.children}</main>
+      <main>{props.children}</main>
       <Footer />
     </>
   );

@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Content from "../Header/Content.json";
 const JoinToday = ({ loggedIn, data }) => {
   const router = useRouter();
-  const { jointodayheader, joinus } = Content[router.locale];
+  const { jointodayheader, joinus, myapp } = Content[router.locale];
   return (
     <div
       css={css`
@@ -22,21 +22,39 @@ const JoinToday = ({ loggedIn, data }) => {
           margin: 5em;
         `}
       >
-        <Link href="/register">
-          <a
-            css={css`
-              font-size: 1.5em;
-              border-radius: 50px;
-              background-color: #2ec4b6;
-              padding: 1em 3em;
-              color: #fff;
-              text-decoration: none;
-              cursor: pointer;
-            `}
-          >
-            {joinus}
-          </a>
-        </Link>
+        {loggedIn ? (
+          <Link href={`/${data._id}/bankapp`}>
+            <a
+              css={css`
+                font-size: 1.5em;
+                border-radius: 50px;
+                background-color: #2ec4b6;
+                padding: 1em 3em;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+              `}
+            >
+              {myapp}
+            </a>
+          </Link>
+        ) : (
+          <Link href="/register">
+            <a
+              css={css`
+                font-size: 1.5em;
+                border-radius: 50px;
+                background-color: #2ec4b6;
+                padding: 1em 3em;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+              `}
+            >
+              {joinus}
+            </a>
+          </Link>
+        )}
       </div>
     </div>
   );
