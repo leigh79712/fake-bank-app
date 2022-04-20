@@ -30,6 +30,8 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^6.1.2",
+    "eslint": "^8.13.0",
+    "eslint-plugin-react-hooks": "^4.4.0",
     "nodemon": "^2.0.15"
   }
 }
