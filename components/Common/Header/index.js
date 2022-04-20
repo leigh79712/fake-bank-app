@@ -3,27 +3,16 @@ import { useState } from "react";
 import { css, useTheme } from "@emotion/react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "public/images/logo-light.png";
 import ThemeButton from "./ThemeButton";
 import Languages from "./Languages";
 import { useRouter } from "next/router";
 import Content from "./Content.json";
-import useSWR from "swr";
 
-const Header = ({ themeState, toggleTheme }) => {
+const Header = ({ themeState, toggleTheme, loggedIn, data }) => {
   const [opacity, setOpacity] = useState(1);
   const router = useRouter();
   const theme = useTheme();
   const { links, login, register, logout } = Content[router.locale];
-  const { data, err } = useSWR("/api/user", async function (args) {
-    const res = await fetch(args);
-    return res.json();
-  });
-  let loggedIn = false;
-  if (!data) loggedIn = false;
-  if (data) {
-    loggedIn = true;
-  }
 
   const mouseEnter = (e) => {
     e.target.style.opacity = 1;
@@ -50,20 +39,23 @@ const Header = ({ themeState, toggleTheme }) => {
         }
       `}
     >
-      <a>
-        <Image
-          src={logo}
-          alt="logo"
-          height={60}
-          width={130}
-          css={css`
-            transition: all 0.3s;
-            opacity: ${opacity};
-          `}
-          onMouseEnter={mouseEnter}
-          onMouseOut={mouseOut}
-        />
-      </a>
+      <Link href="/">
+        <a>
+          <Image
+            src={theme.logo}
+            alt="logo"
+            height={60}
+            width={130}
+            css={css`
+              transition: all 0.3s;
+              opacity: ${opacity};
+            `}
+            onMouseEnter={mouseEnter}
+            onMouseOut={mouseOut}
+          />
+        </a>
+      </Link>
+
       <ul
         css={css`
           display: flex;
@@ -195,16 +187,11 @@ const Header = ({ themeState, toggleTheme }) => {
                   font-weight: 400;
                   color: #fff;
                   text-decoration: none;
-                  display: block;
-                  transition: all 0.3s;
                   cursor: pointer;
-                  opacity: ${opacity};
                   background-color: #2ec4b6;
                   padding: 0.5em;
                   border-radius: 5px;
                 `}
-                onMouseEnter={mouseEnter}
-                onMouseOut={mouseOut}
               >
                 {register}
               </a>

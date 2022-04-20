@@ -27,7 +27,7 @@ const OperationWithdrawal = (props) => {
 
   const withdrawalSubmit = async (e) => {
     e.preventDefault();
-    if (withdrawalAmount.trim().length === 0 || withdrawalAmount < 0) {
+    if (withdrawalAmount.trim().length === 0 || withdrawalAmount <= 0) {
       setIsValid(false);
       return;
     }

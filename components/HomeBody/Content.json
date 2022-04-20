@@ -1,6 +1,7 @@
 {
   "en-US": {
     "register": "Register",
+    "myApp": "My app",
     "bannerH1": "When banking meets minimalist",
     "bannerH4": " Make your life easier",
     "feature": "FEATURE",
@@ -18,6 +19,7 @@
   },
   "zh-TW": {
     "register": "註冊",
+    "myApp": "進入我的頁面",
     "bannerH1": "讓 極 簡 主 義<br/>融 入 您 的 金 融 生 活",
     "bannerH4": "讓 您 的 生 活 更 簡 單",
     "feature": "服務",

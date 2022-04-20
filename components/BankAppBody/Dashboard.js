@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 import { useRouter } from "next/router";
-import { css } from "@emotion/react";
+import { css, useTheme } from "@emotion/react";
 import useSWR from "swr";
 import type from "./Bankapp.module.css";
 import H2 from "./components/bodycomponents/H2";
@@ -29,19 +29,20 @@ const Dashboard = () => {
   });
   const move = [];
   const router = useRouter();
+  const theme = useTheme();
 
   // Random component
   const completionist = useCallback((e) => {
-    fetch("/logout").then((res) => {
-      // Do a fast client-side transition to the already prefetched dashboard page
+    fetch("/logout").then(async (res) => {
       if (res.ok) {
-        router.push("/login");
+        await router.push("/login");
+        await router.reload();
       }
     });
   }, []);
-  useEffect(() => {
-    // Prefetch the dashboard page
-    router.prefetch("/login");
+
+  useEffect(async () => {
+    await router.prefetch("/login");
   }, []);
 
   const renderer = ({ minutes, seconds, completed }) => {
@@ -51,7 +52,7 @@ const Dashboard = () => {
     // Render a countdown
     return (
       <span>
-        {minutes}:{seconds}
+        " You will be logged out in " {minutes}:{seconds}
       </span>
     );
   };
@@ -82,6 +83,9 @@ const Dashboard = () => {
         grid-template-columns: 4fr 2fr 2fr;
         grid-template-rows: auto repeat(3, 15rem) auto;
         gap: 2rem;
+
+        padding: 3em;
+        border-radius: 3em;
       `}
     >
       {/* blance */}
@@ -98,7 +102,7 @@ const Dashboard = () => {
       <div
         css={css`
           grid-column: 2 / span 2;
-          /* background-color: #f4f4f479; */
+          background-image: linear-gradient(to top left, #2ce4b9, #2ce4b6);
           border-radius: 1rem;
           padding: 2rem 3rem;
           color: #333;
@@ -109,6 +113,7 @@ const Dashboard = () => {
           css={css`
             padding: 1rem 1rem;
             overflow: scroll;
+            color: ${theme.color};
           `}
         >
           New message
@@ -124,9 +129,8 @@ const Dashboard = () => {
           grid-row: span 2;
         `}
       >
-        " You will be logged out in "
         <Countdown
-          date={Date.now() + 30000}
+          date={Date.now() + 300000}
           renderer={renderer}
           css={css`
             font-weight: 600;

@@ -1,11 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { Button, SectionHeader } from "components/Common";
+import { SectionHeader } from "components/Common";
 import { useRouter } from "next/router";
 import Content from "./Content.json";
-const JoinToday = () => {
+import Link from "next/link";
+
+const JoinToday = ({ loggedIn, data }) => {
   const router = useRouter();
-  const { joinTodayHeader, joinUs } = Content[router.locale];
+  const { joinTodayHeader, joinUs, myApp } = Content[router.locale];
+
   return (
     <div
       css={css`
@@ -16,17 +19,42 @@ const JoinToday = () => {
       <div
         css={css`
           text-align: center;
+          margin: 5em;
         `}
       >
-        <Button
-          css={css`
-            margin: 2em;
-            font-size: 1.5em;
-            border-radius: 50px;
-          `}
-        >
-          {joinUs}
-        </Button>
+        {loggedIn ? (
+          <Link href={`/${data._id}/bankapp`}>
+            <a
+              css={css`
+                font-size: 1.5em;
+                border-radius: 50px;
+                background-color: #2ec4b6;
+                padding: 1em 3em;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+              `}
+            >
+              {myApp}
+            </a>
+          </Link>
+        ) : (
+          <Link href="/register">
+            <a
+              css={css`
+                font-size: 1.5em;
+                border-radius: 50px;
+                background-color: #2ec4b6;
+                padding: 1em 3em;
+                color: #fff;
+                text-decoration: none;
+                cursor: pointer;
+              `}
+            >
+              {joinUs}
+            </a>
+          </Link>
+        )}
       </div>
     </div>
   );
