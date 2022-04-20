@@ -17,7 +17,7 @@
     "express-session": "^1.17.2",
     "googleapis": "^92.0.0",
     "mongoose": "^6.1.5",
-    "next": "12.0.7",
+    "next": "^12.1.5",
     "normalize.css": "^8.0.1",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^6.1.2",
-    "eslint-plugin-react-hooks": "^4.3.0",
     "nodemon": "^2.0.15"
   }
 }
