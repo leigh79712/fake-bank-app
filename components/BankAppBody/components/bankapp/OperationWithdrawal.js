@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
+import { useState } from "react";
 import { css } from "@emotion/react";
-import useSWR from "swr";
 import {
   Operation,
   OperationForm,
@@ -14,15 +13,11 @@ import { useRouter } from "next/router";
 import Content from "../../Content.json";
 import valued from "./Operation.module.css";
 
-const OperationWithdrawal = (props) => {
+const OperationWithdrawal = ({ data }) => {
   const [withdrawalAmount, setWithdrawalAmount] = useState("");
   const [isValid, setIsValid] = useState(true);
   const router = useRouter();
   const { withdrawal, amount } = Content[router.locale];
-  const { data, err } = useSWR("/api/user", async function (args) {
-    const res = await fetch(args);
-    return res.json();
-  });
   const id = data._id;
 
   const withdrawalSubmit = async (e) => {

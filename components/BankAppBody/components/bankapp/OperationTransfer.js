@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
-import { css } from "@emotion/react";
-import useSWR from "swr";
+import { useState } from "react";
 import {
   Operation,
   OperationForm,
@@ -14,17 +12,13 @@ import { useRouter } from "next/router";
 import Content from "../../Content.json";
 import valued from "./Operation.module.css";
 
-const OperationTransfer = () => {
+const OperationTransfer = ({ data }) => {
   const router = useRouter();
   const { transfer, amount, transferTo } = Content[router.locale];
   const [transferUsername, setTransferUsername] = useState("");
   const [transferAmount, setTransferAmount] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [usernameValid, setUsernameValid] = useState(true);
-  const { data, err } = useSWR("/api/user", async function (args) {
-    const res = await fetch(args);
-    return res.json();
-  });
   const id = data._id;
 
   const transferSubmit = (e) => {

@@ -21,7 +21,7 @@ import OperationWithdrawal from "./components/bankapp/OperationWithdrawal";
 import Countdown from "react-countdown";
 
 const Dashboard = () => {
-  const { data = { movements: [] } } = useSWR(
+  const { data = { movements: [], _id: "" } } = useSWR(
     "/api/user",
     async function (args) {
       const res = await fetch(args);
@@ -90,16 +90,16 @@ const Dashboard = () => {
       `}
     >
       {/* blance */}
-      {data && <Balance data={data} />}
+      <Balance data={data} />
       {/* movements */}
       <MovementsMain>{move}</MovementsMain>
       {/* summary */}
-      {data && <Summary data={data} />}
+      <Summary data={data} />
       {/* operation */}
-      <OperationTransfer />
-      <OperationLoan />
-      <OperationDeposit />
-      <OperationWithdrawal />
+      <OperationTransfer data={data} />
+      <OperationLoan data={data} />
+      <OperationDeposit data={data} />
+      <OperationWithdrawal data={data} />
       <div
         css={css`
           grid-column: 2 / span 2;
