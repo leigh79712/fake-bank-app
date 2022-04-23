@@ -88,11 +88,11 @@ const Dashboard = () => {
       `}
     >
       {/* blance */}
-      <Balance />
+      <Balance data={data} />
       {/* movements */}
       <MovementsMain>{move}</MovementsMain>
       {/* summary */}
-      <Summary />
+      <Summary data={data} />
       {/* operation */}
       <OperationTransfer />
       <OperationLoan />

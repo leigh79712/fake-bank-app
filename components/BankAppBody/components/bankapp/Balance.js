@@ -1,7 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
-import { css } from "@emotion/react";
-import useSWR from "swr";
 import {
   Pcurrentbalance,
   PDate,
@@ -11,14 +7,10 @@ import {
 import { useRouter } from "next/router";
 import Content from "../../Content.json";
 
-const Balance = (props) => {
+const Balance = ({ data }) => {
   const router = useRouter();
   const { loanP, save, hi } = Content[router.locale];
 
-  const { data, err } = useSWR("/api/user", async function (args) {
-    const res = await fetch(args);
-    return res.json();
-  });
   const movement = data.movements.map((amount) => +amount.amount);
   let sum = 0;
   movement.forEach(function (element) {
