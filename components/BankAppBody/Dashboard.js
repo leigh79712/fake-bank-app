@@ -14,7 +14,6 @@ import {
   MovementsDate,
 } from "./components/bodycomponents/Movements";
 import Summary from "./components/bankapp/Summary";
-
 import OperationTransfer from "./components/bankapp/OperationTransfer";
 import OperationLoan from "./components/bankapp/OperationLoan";
 import OperationDeposit from "./components/bankapp/OperationDeposit";
@@ -22,10 +21,13 @@ import OperationWithdrawal from "./components/bankapp/OperationWithdrawal";
 import Countdown from "react-countdown";
 
 const Dashboard = () => {
-  const { data, err } = useSWR("/api/user", async function (args) {
-    const res = await fetch(args);
-    return res.json();
-  });
+  const { data = { movements: [] } } = useSWR(
+    "/api/user",
+    async function (args) {
+      const res = await fetch(args);
+      return res.json();
+    }
+  );
   const move = [];
   const router = useRouter();
   const theme = useTheme();
@@ -88,11 +90,11 @@ const Dashboard = () => {
       `}
     >
       {/* blance */}
-      <Balance data={data} />
+      {data && <Balance data={data} />}
       {/* movements */}
       <MovementsMain>{move}</MovementsMain>
       {/* summary */}
-      <Summary data={data} />
+      {data && <Summary data={data} />}
       {/* operation */}
       <OperationTransfer />
       <OperationLoan />
