@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState, useEffect, useCallback } from "react";
-
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { css, useTheme } from "@emotion/react";
 import useSWR from "swr";
@@ -32,17 +31,17 @@ const Dashboard = () => {
   const theme = useTheme();
 
   // Random component
-  const completionist = useCallback((e) => {
-    fetch("/logout").then(async (res) => {
+  const completionist = () => {
+    fetch("/logout").then((res) => {
       if (res.ok) {
-        await router.push("/login");
-        await router.reload();
+        router.push("/login");
+        router.reload();
       }
     });
-  }, []);
+  };
 
-  useEffect(async () => {
-    await router.prefetch("/login");
+  useEffect(() => {
+    // router.prefetch("/login");
   }, []);
 
   const renderer = ({ minutes, seconds, completed }) => {
@@ -52,7 +51,7 @@ const Dashboard = () => {
     // Render a countdown
     return (
       <span>
-        " You will be logged out in " {minutes}:{seconds}
+        You will be logged out in {minutes}:{seconds}
       </span>
     );
   };

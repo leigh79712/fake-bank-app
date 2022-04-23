@@ -28,7 +28,7 @@ const Operation = () => {
         `}
       >
         <div>
-          <Image src={icon1} width={350} height={200}></Image>
+          <Image src={icon1} width={350} height={200} alt=""></Image>
           <div>
             <h5
               css={css`
@@ -45,7 +45,7 @@ const Operation = () => {
           </div>
         </div>
         <div>
-          <Image src={icon2} width={350} height={200}></Image>
+          <Image src={icon2} width={350} height={200} alt=""></Image>
           <div>
             <h5
               css={css`
@@ -62,7 +62,7 @@ const Operation = () => {
           </div>
         </div>
         <div>
-          <Image src={icon3} width={350} height={200}></Image>
+          <Image src={icon3} width={350} height={200} alt=""></Image>
           <div>
             <h5
               css={css`

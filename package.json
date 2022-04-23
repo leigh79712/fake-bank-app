@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "nodemon server/app.js",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -30,7 +31,8 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^6.1.2",
-    "eslint": "^8.13.0",
+    "eslint": "8.13.0",
+    "eslint-config-next": "12.1.5",
     "eslint-plugin-react-hooks": "^4.4.0",
     "nodemon": "^2.0.15"
   }

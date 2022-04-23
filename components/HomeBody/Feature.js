@@ -31,7 +31,7 @@ const Feature = () => {
         `}
       >
         <div>
-          <Image src={bank} height={550} width={880}></Image>
+          <Image src={bank} height={550} width={880} alt=""></Image>
         </div>
         <div
           css={css`
@@ -71,10 +71,10 @@ const Feature = () => {
           </p>
         </div>
         <div>
-          <Image src={saving} height={550} width={880}></Image>
+          <Image src={saving} height={550} width={880} alt=""></Image>
         </div>
         <div>
-          <Image src={piggybank} height={550} width={880}></Image>
+          <Image src={piggybank} height={550} width={880} alt=""></Image>
         </div>
         <div
           css={css`
