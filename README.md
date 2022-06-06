@@ -1,5 +1,12 @@
 # fake-bank-app
 
+Try to login and have fun with this app
+first account: liegh
+pin: 2222
+
+second account: vico
+pin: 2222
+
 ## Installation
 
 ```bash
