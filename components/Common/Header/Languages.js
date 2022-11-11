@@ -25,7 +25,7 @@ const Languages = () => {
         Lists.push(
           <li key={key} onClick={() => setIsShow(false)}>
             <Link href="/" locale={key}>
-              <a>{element}</a>
+              {element}
             </Link>
           </li>
         );

@@ -40,20 +40,18 @@ const Header = ({ themeState, toggleTheme, loggedIn, data }) => {
       `}
     >
       <Link href="/">
-        <a>
-          <Image
-            src={theme.logo}
-            alt="logo"
-            height={60}
-            width={130}
-            css={css`
-              transition: all 0.3s;
-              opacity: ${opacity};
-            `}
-            onMouseEnter={mouseEnter}
-            onMouseOut={mouseOut}
-          />
-        </a>
+        <Image
+          src={theme.logo}
+          alt="logo"
+          height={60}
+          width={130}
+          css={css`
+            transition: all 0.3s;
+            opacity: ${opacity};
+          `}
+          onMouseEnter={mouseEnter}
+          onMouseOut={mouseOut}
+        />
       </Link>
 
       <ul
@@ -70,24 +68,7 @@ const Header = ({ themeState, toggleTheme, loggedIn, data }) => {
               margin-left: 4rem;
             `}
           >
-            <Link href={link.url}>
-              <a
-                css={css`
-                  font-size: 1.7rem;
-                  font-weight: 400;
-                  color: inherit;
-                  text-decoration: none;
-                  display: block;
-                  cursor: pointer;
-                  transition: all 0.3s;
-                  opacity: ${opacity};
-                `}
-                onMouseEnter={mouseEnter}
-                onMouseOut={mouseOut}
-              >
-                {link.name}
-              </a>
-            </Link>
+            <Link href={link.url}>{link.name}</Link>
           </li>
         ))}
       </ul>
@@ -100,24 +81,7 @@ const Header = ({ themeState, toggleTheme, loggedIn, data }) => {
       >
         {loggedIn && (
           <li>
-            <Link href={`/${data._id}/bankapp`}>
-              <a
-                css={css`
-                  font-size: 1rem;
-                  font-weight: 400;
-                  color: inherit;
-                  text-decoration: none;
-                  display: block;
-                  transition: all 0.3s;
-                  cursor: pointer;
-                  opacity: ${opacity};
-                `}
-                onMouseEnter={mouseEnter}
-                onMouseOut={mouseOut}
-              >
-                {data.lastname}
-              </a>
-            </Link>
+            <Link href={`/${data._id}/bankapp`}>{data.lastname}</Link>
           </li>
         )}
         {loggedIn && (
@@ -154,24 +118,7 @@ const Header = ({ themeState, toggleTheme, loggedIn, data }) => {
               margin-left: 2rem;
             `}
           >
-            <Link href="/login">
-              <a
-                css={css`
-                  font-size: 1rem;
-                  font-weight: 400;
-                  color: inherit;
-                  text-decoration: none;
-                  display: block;
-                  transition: all 0.3s;
-                  cursor: pointer;
-                  opacity: ${opacity};
-                `}
-                onMouseEnter={mouseEnter}
-                onMouseOut={mouseOut}
-              >
-                {login}
-              </a>
-            </Link>
+            <Link href="/login">{login}</Link>
           </li>
         )}
         {!loggedIn && (
@@ -180,22 +127,7 @@ const Header = ({ themeState, toggleTheme, loggedIn, data }) => {
               margin-left: 2rem;
             `}
           >
-            <Link href="/register">
-              <a
-                css={css`
-                  font-size: 1rem;
-                  font-weight: 400;
-                  color: #fff;
-                  text-decoration: none;
-                  cursor: pointer;
-                  background-color: #2ec4b6;
-                  padding: 0.5em;
-                  border-radius: 5px;
-                `}
-              >
-                {register}
-              </a>
-            </Link>
+            <Link href="/register">{register}</Link>
           </li>
         )}
         <li

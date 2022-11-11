@@ -23,37 +23,9 @@ const JoinToday = ({ loggedIn, data }) => {
         `}
       >
         {loggedIn ? (
-          <Link href={`/${data._id}/bankapp`}>
-            <a
-              css={css`
-                font-size: 1.5em;
-                border-radius: 50px;
-                background-color: #2ec4b6;
-                padding: 1em 3em;
-                color: #fff;
-                text-decoration: none;
-                cursor: pointer;
-              `}
-            >
-              {myApp}
-            </a>
-          </Link>
+          <Link href={`/${data._id}/bankapp`}>{myApp}</Link>
         ) : (
-          <Link href="/register">
-            <a
-              css={css`
-                font-size: 1.5em;
-                border-radius: 50px;
-                background-color: #2ec4b6;
-                padding: 1em 3em;
-                color: #fff;
-                text-decoration: none;
-                cursor: pointer;
-              `}
-            >
-              {joinUs}
-            </a>
-          </Link>
+          <Link href="/register">{joinUs}</Link>
         )}
       </div>
     </div>

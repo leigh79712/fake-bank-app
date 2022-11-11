@@ -48,38 +48,8 @@ const Banner = ({ loggedIn, data }) => {
           >
             {bannerH4}
           </h4>
-          {!loggedIn && (
-            <Link href="/register">
-              <a
-                css={css`
-                  background-color: #2ec4b6;
-                  color: #fff;
-                  border-radius: 20px;
-                  border: none;
-                  padding: 1em 2em;
-                  cursor: pointer;
-                `}
-              >
-                {register}
-              </a>
-            </Link>
-          )}
-          {loggedIn && (
-            <Link href={`/${data._id}/bank_app`}>
-              <a
-                css={css`
-                  background-color: #2ec4b6;
-                  color: #fff;
-                  border-radius: 20px;
-                  border: none;
-                  padding: 1em 2em;
-                  cursor: pointer;
-                `}
-              >
-                {myApp}
-              </a>
-            </Link>
-          )}
+          {!loggedIn && <Link href="/register">{register}</Link>}
+          {loggedIn && <Link href={`/${data._id}/bank_app`}>{myApp}</Link>}
         </div>
         <div>
           <Image width={500} height={350} src={theme.card} alt="card"></Image>

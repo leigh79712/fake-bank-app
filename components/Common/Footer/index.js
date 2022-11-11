@@ -27,17 +27,7 @@ const Footer = () => {
       >
         {footerLinks.map((link) => (
           <li key={link.name}>
-            <Link href={link.url}>
-              <a
-                css={css`
-                  font-size: 1.6rem;
-                  text-decoration: none;
-                  cursor: pointer;
-                `}
-              >
-                {link.name}
-              </a>
-            </Link>
+            <Link href={link.url}>{link.name}</Link>
           </li>
         ))}
       </ul>
