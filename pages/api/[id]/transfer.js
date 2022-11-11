@@ -1,4 +1,4 @@
-const User = require("../../../models/user");
+const User = require("../../../models/User");
 
 export default async function handler(req, res) {
   const transferTo = await User.findOne({ username: req.body.username });

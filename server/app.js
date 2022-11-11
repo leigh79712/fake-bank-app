@@ -4,7 +4,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const session = require("express-session");
 const cors = require("cors");
-const User = require("../models/user");
+const User = require("../models/User");
 
 const port = 3000;
 const dev = "development";

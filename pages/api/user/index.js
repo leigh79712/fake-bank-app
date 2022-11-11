@@ -1,4 +1,4 @@
-const User = require("../../../models/user");
+const User = require("../../../models/User");
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
