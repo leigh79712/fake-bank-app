@@ -108,3 +108,6 @@ dist
 
 # google key
 *google-sheet-key.json
+
+# Next.js
+next-env.d.ts
