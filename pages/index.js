@@ -1,9 +1,8 @@
-import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { Banner, Feature, Operation, JoinToday } from "components/HomeBody";
 
-const Index = ({ loggedIn, data }) => {
+const Index = () => {
   const {
     register,
     handleSubmit,
