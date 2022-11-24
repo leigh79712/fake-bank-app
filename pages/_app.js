@@ -1,9 +1,13 @@
-import { StrictMode, useEffect, useState } from "react";
+import { StrictMode } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { ThemeProvider } from "@emotion/react";
 import GlobalStyle from "styles/index";
 import { lightTheme, darkTheme } from "styles/theme";
 import { Layout } from "components/Common";
 import useSWR from "swr";
+
+// Create a client
+const queryClient = new QueryClient();
 
 const App = ({ Component, pageProps }) => {
   // const { session } = pageProps;
@@ -40,11 +44,9 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <StrictMode>
-      <div>
-        <input type="text" />
-        <input type="password" />
-        <button>註冊</button>
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </StrictMode>
   );
 };
