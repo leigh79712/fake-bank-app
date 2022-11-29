@@ -11,13 +11,14 @@ export default async function handler(req, res) {
     case "POST":
       try {
         const { username, password } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new User({
-          username,
-          hash: hashedPassword,
-        });
 
-        await user.save();
+        const user = await User.findOne({ username }).select("hash");
+
+        if (!user) {
+          return res.json({ status: "Not able to find the user" });
+        }
+
+        await bcrypt.compare(password, user.hash);
 
         res.status(200).json({ success: true });
       } catch (error) {

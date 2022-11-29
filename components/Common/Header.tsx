@@ -8,7 +8,6 @@ const Header: React.FC<HeaderProps> = ({}) => {
   const [theme, setTheme] = useState("light");
 
   const switchTheme = () => {
-    console.log("localStorage.theme", localStorage.theme);
     if (localStorage.theme === "light") {
       localStorage.theme = "dark";
       document.documentElement.classList.add("dark");
