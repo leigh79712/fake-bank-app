@@ -1,9 +1,9 @@
-import Layout from "../components/Common/Layout";
+import Layout from "../components/common/Layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Banner from "../components/HomeBody/Banner";
-import Feature from "../components/HomeBody/Feature";
-import Operation from "../components/HomeBody/Operation";
-import JoinToday from "../components/HomeBody/JoinToday";
+import Banner from "../components/home/Banner";
+import Feature from "../components/home/Feature";
+import Operation from "../components/home/Operation";
+import JoinToday from "../components/home/JoinToday";
 
 const Index = () => {
   return (
@@ -25,7 +25,7 @@ interface getStaticPropsTypes {
 export const getStaticProps = async ({ locale }: getStaticPropsTypes) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common", "homePage"])),
+      ...(await serverSideTranslations(locale, ["common", "home"])),
     },
   };
 };

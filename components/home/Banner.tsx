@@ -1,7 +1,7 @@
 import { useTranslation } from "next-i18next";
 
 const Banner = () => {
-  const { t } = useTranslation("homePage");
+  const { t } = useTranslation("home");
 
   return (
     <div className="font-serif tracking-widest grid grid-rows-2 grid-flow-col gap-10">

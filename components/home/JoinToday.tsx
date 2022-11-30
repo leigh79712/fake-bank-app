@@ -2,7 +2,7 @@ import { useTranslation } from "next-i18next";
 import Link from "next/link";
 
 const JoinToday = () => {
-  const { t } = useTranslation("homePage");
+  const { t } = useTranslation("home");
 
   return (
     <section className="text-center">

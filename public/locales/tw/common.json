@@ -1,4 +1,7 @@
 {
   "translateTo": "English",
-  "login": "登入"
+  "login": "登入",
+  "register": "註冊",
+  "username": "帳號",
+  "password": "密碼"
 }

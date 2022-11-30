@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 
 const Operation = () => {
-  const { t } = useTranslation("homePage");
+  const { t } = useTranslation("home");
 
   return (
     <section>

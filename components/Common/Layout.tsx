@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
+import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 
 interface LayoutProps {
@@ -10,7 +11,10 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const { t } = useTranslation("homePage");
+  const router = useRouter();
+  const pathname = router.pathname.split("/")[1];
+  const page = pathname === "" ? "home" : pathname;
+  const { t } = useTranslation(page);
   const titleText = `Petit Bank | ${t("head")}`;
 
   return (
