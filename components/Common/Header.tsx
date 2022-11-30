@@ -1,30 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
-interface HeaderProps {}
+const Header = () => {
+  const router = useRouter();
+  const { t } = useTranslation("common");
+  const changeLocale = router.locale === "en" ? "tw" : "en";
 
-const Header: React.FC<HeaderProps> = ({}) => {
-  const [theme, setTheme] = useState("light");
+  // const [theme, setTheme] = useState("light");
 
-  const switchTheme = () => {
-    if (localStorage.theme === "light") {
-      localStorage.theme = "dark";
-      document.documentElement.classList.add("dark");
-      setTheme("dark");
-    } else {
-      localStorage.theme = "light";
-      document.documentElement.classList.remove("dark");
-      setTheme("light");
-    }
-  };
+  // const switchTheme = () => {
+  //   if (localStorage.theme === "light") {
+  //     localStorage.theme = "dark";
+  //     document.documentElement.classList.add("dark");
+  //     setTheme("dark");
+  //   } else {
+  //     localStorage.theme = "light";
+  //     document.documentElement.classList.remove("dark");
+  //     setTheme("light");
+  //   }
+  // };
 
   return (
     <header>
-      <div className="container mx-auto columns-3 py-5">
+      <div className="container mx-auto py-2 flex justify-between items-center">
         <Link href="/">
           <Image
-            src={`/images/logo-${theme}.svg`}
+            src="/images/logo-light.svg"
             alt="Petit Bank"
             width={200}
             height={40}
@@ -41,16 +45,21 @@ const Header: React.FC<HeaderProps> = ({}) => {
             Operations
           </Link> */}
         </nav>
-        <div className="text-right">
-          <Link href="/register">Sign in</Link>
-          <Image
+        <div className="text-right flex items-center">
+          <Link href="/login" className="mr-5">
+            {t("login")}
+          </Link>
+          <Link href={router.pathname} locale={changeLocale} className="mr-5">
+            {t("translateTo")}
+          </Link>
+          {/* <Image
             className="inline cursor-pointer"
-            src={`/images/icons/${theme}.svg`}
-            alt={theme}
+            src="/images/icons/light.svg"
+            alt="light"
             width={20}
             height={20}
             onClick={switchTheme}
-          />
+          /> */}
         </div>
       </div>
     </header>

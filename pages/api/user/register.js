@@ -18,10 +18,10 @@ export default async function handler(req, res) {
         });
 
         await user.save();
-
-        res.status(200).json({ success: true });
       } catch (error) {
-        res.status(400).json({ success: false });
+        res
+          .status(200)
+          .json({ status: 400, username: error.keyPattern.username });
       }
       break;
     default:

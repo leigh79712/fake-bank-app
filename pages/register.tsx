@@ -5,11 +5,14 @@ import Input from "../components/Common/Input";
 import Link from "next/link";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { useQueryClient, useMutation } from "react-query";
 
 const register = () => {
-  const { register, handleSubmit } = useForm();
-  const queryClient = useQueryClient();
+  const {
+    setError,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const createUser = async (data: any) => {
     const { data: response } = await axios({
@@ -18,27 +21,18 @@ const register = () => {
       data,
     });
 
-    return response.data;
+    if (response.status === 400) {
+      setError("username", {
+        type: "server",
+        message: response.index,
+      });
+    }
   };
-
-  const mutation = useMutation({
-    mutationFn: createUser,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["user"] });
-    },
-  });
 
   return (
     <Layout>
-      <Head>
-        <title>Stripe Login | Sign in to the Petit Bank Dashboard</title>
-        <meta
-          property="og:title"
-          content="Stripe Login | Sign in to the Petit Bank Dashboard"
-        />
-      </Head>
       <div className="container mx-auto w-96">
-        <form onSubmit={handleSubmit(mutation.mutate)}>
+        <form onSubmit={handleSubmit(createUser)}>
           <Input
             attr={{
               ...register("username", { required: true }),
@@ -46,6 +40,11 @@ const register = () => {
             }}
             label="Username"
           />
+          {errors.username && (
+            <span className="text-red-400 inline-block mt-1">
+              This username already exists.
+            </span>
+          )}
           <Input
             attr={{
               ...register("password", { required: true }),
@@ -57,13 +56,16 @@ const register = () => {
           />
           <button
             type="submit"
-            className="text-white bg-teal-400 rounded-md h-12 w-full mt-5"
+            className="text-white bg-cyan-500 rounded-md h-12 w-full mt-5"
           >
             Create account
           </button>
         </form>
         <p className="text-center mt-5">
-          Have an account? <Link href="/login">Sign in</Link>
+          Have an account?
+          <Link href="/login" className="text-cyan-500 ml-1">
+            Sign in
+          </Link>
         </p>
       </div>
     </Layout>
