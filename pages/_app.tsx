@@ -3,6 +3,7 @@ import Head from "next/head";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "../styles/globals.css";
+import { appWithTranslation } from "next-i18next";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -45,4 +46,4 @@ const App = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default App;
+export default appWithTranslation(App);

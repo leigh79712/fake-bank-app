@@ -11,13 +11,16 @@
     "axios": "^1.2.0",
     "bcrypt": "^5.1.0",
     "cookie-session": "^2.0.0",
+    "i18next": "^22.0.6",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.3",
     "next": "^13.0.5",
+    "next-i18next": "^13.0.0",
     "passport-local-mongoose": "^7.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.5",
+    "react-i18next": "^12.0.0",
     "react-query": "^3.39.2"
   },
   "devDependencies": {
