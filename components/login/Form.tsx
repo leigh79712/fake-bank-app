@@ -2,35 +2,37 @@ import Input from "../common/Input";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { useQueryClient, useMutation } from "react-query";
 import axios from "axios";
 
 const Form = () => {
   const { t } = useTranslation(["common", "login"]);
-  const { register, handleSubmit } = useForm();
+  const {
+    setError,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const queryClient = useQueryClient();
-
-  const createUser = async (data: any) => {
+  const login = async (data: any) => {
     const { data: response } = await axios({
       method: "post",
       url: "/api/user/login",
       data,
     });
 
-    return response.data;
-  };
+    if (response.status === 400) {
+      const type = response.type;
+      const message = response.message;
 
-  const mutation = useMutation({
-    mutationFn: createUser,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["user"] });
-    },
-  });
+      setError(type, {
+        message,
+      });
+    }
+  };
 
   return (
     <div className="container mx-auto w-96">
-      <form onSubmit={handleSubmit(mutation.mutate)}>
+      <form onSubmit={handleSubmit(login)}>
         <Input
           attr={{
             ...register("username", { required: true }),
@@ -38,6 +40,11 @@ const Form = () => {
           }}
           label={t("username")}
         />
+        {errors.username && (
+          <span className="text-red-400 inline-block mt-1">
+            {errors.username.message}
+          </span>
+        )}
         <Input
           attr={{
             ...register("password", { required: true }),
@@ -45,8 +52,13 @@ const Form = () => {
             type: "password",
           }}
           label={t("password")}
-          className="my-5"
+          className="mt-5"
         />
+        {errors.password && (
+          <span className="text-red-400 inline-block mt-1">
+            {errors.password.message}
+          </span>
+        )}
         <button
           type="submit"
           className="text-white bg-cyan-500 rounded-md h-12 w-full mt-5"
