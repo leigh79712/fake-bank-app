@@ -1,8 +1,12 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "utils/dbConnect";
 import User from "models/User";
 import bcrypt from "bcrypt";
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const { method } = req;
 
   await dbConnect();
