@@ -14,16 +14,18 @@ const RegisterForm = () => {
   } = useForm();
 
   const createUser = async (data: any) => {
-    const { data: response } = await axios({
+    const { data: res } = await axios({
       method: "post",
       url: "/api/user/register",
       data,
     });
 
-    if (response.status === 400) {
-      setError("username", {
+    if (res.status === 400) {
+      const message = t(res.message);
+
+      setError(res.type, {
         type: "server",
-        message: response.index,
+        message,
       });
     }
   };
@@ -40,7 +42,7 @@ const RegisterForm = () => {
         />
         {errors.username && (
           <span className="text-red-400 inline-block mt-1">
-            This username already exists.
+            {errors.username.message}
           </span>
         )}
         <Input
@@ -48,10 +50,16 @@ const RegisterForm = () => {
             ...register("password", { required: true }),
             autoComplete: "new-password",
             type: "password",
+            placeholder: t("passwordFormat"),
           }}
           label={t("password")}
-          className="my-5"
+          className="mt-5"
         />
+        {errors.password && (
+          <span className="text-red-400 inline-block mt-1">
+            {errors.password.message}
+          </span>
+        )}
         <button
           type="submit"
           className="text-white bg-cyan-500 rounded-md h-12 w-full mt-5"

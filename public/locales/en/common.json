@@ -3,11 +3,15 @@
   "login": "Log in",
   "register": "Sign up",
   "username": "Username",
+  "password": "Password",
   "about": "About",
   "pricing": "Pricing",
   "terms": "Terms of Use",
   "privacy": "Privacy Policy",
   "careers": "Careers",
   "blog": "Blog",
-  "contact": "Contact Us"
+  "contact": "Contact Us",
+  "hadUsername": "Username already exists",
+  "errorPassword": "Wrong password format",
+  "passwordFormat": "At least 6 letters, 1 uppercase and symbol"
 }

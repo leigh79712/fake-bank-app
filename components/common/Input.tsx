@@ -1,7 +1,12 @@
 import React from "react";
 
 interface InputProps {
-  attr: { name: string; type: string; autoComplete?: string };
+  attr: {
+    name: string;
+    type: string;
+    autoComplete?: string;
+    placeholder?: string;
+  };
   label?: string;
   className?: string;
 }
