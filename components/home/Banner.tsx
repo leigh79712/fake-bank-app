@@ -4,8 +4,8 @@ const Banner = () => {
   const { t } = useTranslation("home");
 
   return (
-    <div className="font-serif tracking-widest grid grid-rows-2 grid-flow-col gap-10">
-      <h1 className="text-7xl w-[705px] leading-normal row-span-1">
+    <div className="font-serif tracking-widest grid grid-flow-col gap-10 justify-center content-center py-20">
+      <h1 className="text-7xl w-[705px] leading-normal row-span-1 self-end">
         {t("title")}
       </h1>
       <p className="text-4xl row-span-1">{t("description")}</p>

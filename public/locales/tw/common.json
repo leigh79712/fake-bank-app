@@ -3,5 +3,12 @@
   "login": "登入",
   "register": "註冊",
   "username": "帳號",
-  "password": "密碼"
+  "password": "密碼",
+  "about": "關於我們",
+  "pricing": "定價",
+  "terms": "服務協定",
+  "privacy": "隱私說明",
+  "careers": "就業機會",
+  "blog": "部落格",
+  "contact": "聯絡我們"
 }

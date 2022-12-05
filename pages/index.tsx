@@ -4,6 +4,7 @@ import Banner from "../components/home/Banner";
 import Feature from "../components/home/Feature";
 import Operation from "../components/home/Operation";
 import JoinToday from "../components/home/JoinToday";
+import About from "../components/home/About";
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
         <Feature />
         <Operation />
         <JoinToday />
+        <About />
       </div>
     </Layout>
   );

@@ -3,5 +3,11 @@
   "login": "Log in",
   "register": "Sign up",
   "username": "Username",
-  "password": "Password"
+  "about": "About",
+  "pricing": "Pricing",
+  "terms": "Terms of Use",
+  "privacy": "Privacy Policy",
+  "careers": "Careers",
+  "blog": "Blog",
+  "contact": "Contact Us"
 }
