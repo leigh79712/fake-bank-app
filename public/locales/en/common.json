@@ -12,6 +12,8 @@
   "blog": "Blog",
   "contact": "Contact Us",
   "hadUsername": "Username already exists",
-  "errorPassword": "Wrong password format",
-  "passwordFormat": "At least 6 letters, 1 uppercase and symbol"
+  "wrongFormat": "Wrong password format",
+  "passwordFormat": "At least 6 letters, 1 uppercase and symbol",
+  "noUsername": "Can't find username",
+  "errorPassword": "Wrong password"
 }

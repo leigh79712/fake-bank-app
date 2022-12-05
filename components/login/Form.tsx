@@ -14,15 +14,15 @@ const Form = () => {
   } = useForm();
 
   const login = async (data: any) => {
-    const { data: response } = await axios({
+    const { data: res } = await axios({
       method: "post",
       url: "/api/user/login",
       data,
     });
 
-    if (response.status === 400) {
-      const type = response.type;
-      const message = response.message;
+    if (res.status === 400) {
+      const type = res.type;
+      const message = t(res.message);
 
       setError(type, {
         message,

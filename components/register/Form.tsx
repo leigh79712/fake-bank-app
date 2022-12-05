@@ -21,9 +21,10 @@ const RegisterForm = () => {
     });
 
     if (res.status === 400) {
+      const type = res.type;
       const message = t(res.message);
 
-      setError(res.type, {
+      setError(type, {
         type: "server",
         message,
       });

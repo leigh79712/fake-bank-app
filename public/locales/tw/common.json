@@ -12,6 +12,8 @@
   "blog": "部落格",
   "contact": "聯絡我們",
   "hadUsername": "帳號已有人使用",
-  "errorPassword": "密碼格式錯誤",
-  "passwordFormat": "長度至少6個字母，1個英文大寫及符號"
+  "wrongFormat": "密碼格式錯誤",
+  "passwordFormat": "長度至少6個字母，1個英文大寫及符號",
+  "noUsername": "沒有此帳號",
+  "errorPassword": "密碼錯誤"
 }

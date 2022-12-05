@@ -4,7 +4,7 @@ import Form from "../components/login/Form";
 
 const login = () => {
   return (
-    <Layout>
+    <Layout className="flex justify-center items-center">
       <Form />
     </Layout>
   );

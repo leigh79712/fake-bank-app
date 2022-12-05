@@ -19,10 +19,9 @@ export default async function handler(
         const regex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{6,30}$/;
 
         if (!regex.test(password)) {
-          res
+          return res
             .status(200)
-            .json({ status: 400, type: "password", message: "errorPassword" });
-          return null;
+            .json({ status: 400, type: "password", message: "wrongFormat" });
         }
 
         const user = new User({
@@ -32,15 +31,14 @@ export default async function handler(
 
         await user.save();
 
-        res.status(200).json({ status: 200 });
+        return res.status(200).json({ status: 200 });
       } catch (error) {
-        res
+        return res
           .status(200)
           .json({ status: 400, type: "username", message: "hadUsername" });
       }
-      break;
+
     default:
-      res.status(400).json({ success: false });
-      break;
+      return res.status(400).json({ success: false });
   }
 }
