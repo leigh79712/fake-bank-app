@@ -17,7 +17,7 @@ const Input: React.FC<InputProps> = (props) => {
       {props.label && <label htmlFor={props.attr.name}>{props.label}</label>}
       <input
         id={props.attr.name}
-        className="block rounded-md h-12 w-full border-gray-300 border px-3"
+        className="block rounded-md h-12 w-full border-gray-300 border px-3 text-black"
         {...props.attr}
       />
     </div>

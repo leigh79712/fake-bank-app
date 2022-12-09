@@ -16,22 +16,21 @@ export default async function handler(
       try {
         const { username, password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
-        const regex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{6,30}$/;
+        // const regex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{6,30}$/;
 
-        if (!regex.test(password)) {
-          return res
-            .status(200)
-            .json({ status: 400, type: "password", message: "wrongFormat" });
-        }
+        // if (!regex.test(password)) {
+        //   return res
+        //     .status(200)
+        //     .json({ status: 400, type: "password", message: "wrongFormat" });
+        // }
 
         const user = new User({
           username,
           hash: hashedPassword,
         });
 
-        await user.save();
-
-        return res.status(200).json({ status: 200 });
+        user.save();
+        res.redirect("/dashboard");
       } catch (error) {
         return res
           .status(200)

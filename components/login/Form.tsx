@@ -50,6 +50,7 @@ const Form = () => {
             ...register("password", { required: true }),
             autoComplete: "new-password",
             type: "password",
+            placeholder: t("passwordFormat"),
           }}
           label={t("password")}
           className="mt-5"
