@@ -1,14 +1,17 @@
 import React from "react";
-import { useTranslation } from "next-i18next";
-import Link from "next/link";
+// import { useTranslation } from "next-i18next";
+// import Link from "next/link";
 import Image from "next/image";
+import { useTheme } from "hooks/useTheme";
 
 const About = () => {
-  const { t } = useTranslation("common");
+  const { useThemeContext } = useTheme();
+  const { type } = useThemeContext;
+  // const { t } = useTranslation("common");
 
   return (
     <div className="container mx-auto text-center">
-      <nav>
+      {/* <nav>
         <Link className="mx-5" href="/about">
           {t("about")}
         </Link>
@@ -30,10 +33,10 @@ const About = () => {
         <Link className="mx-5" href="/contact-us">
           {t("contact")}
         </Link>
-      </nav>
+      </nav> */}
       <Image
         className="inline my-10"
-        src={`/images/logo-light.svg`}
+        src={`/images/logo-${type}.svg`}
         alt="Petit Bank"
         width={200}
         height={40}

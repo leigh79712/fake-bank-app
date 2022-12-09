@@ -13,7 +13,7 @@ const Operation = () => {
       <div className="grid grid-cols-3 gap-x-8">
         <div className="text-center">
           <div className="inline-block bg-[url(/images/icon1.png)] bg-[length:350px_200px] bg-no-repeat bg-center w-[350px] h-[200px]" />
-          <h3 className="text-2xl text-blue-900 my-5">
+          <h3 className="text-2xl text-blue-900 dark:text-white my-5">
             {t("operationSection1")}
           </h3>
           <p className="text-left row-span-1 leading-snug">
@@ -22,7 +22,7 @@ const Operation = () => {
         </div>
         <div className="text-center">
           <div className="inline-block bg-[url(/images/icon2.png)] bg-[length:350px_200px] bg-no-repeat bg-center w-[350px] h-[200px]" />
-          <h3 className="text-2xl text-blue-900 my-5">
+          <h3 className="text-2xl text-blue-900 dark:text-white my-5">
             {t("operationSection2")}
           </h3>
           <p className="text-left row-span-1 leading-snug">
@@ -31,7 +31,7 @@ const Operation = () => {
         </div>
         <div className="text-center">
           <div className="inline-block bg-[url(/images/icon3.png)] bg-[length:350px_200px] bg-no-repeat bg-center w-[350px] h-[200px]" />
-          <h3 className="text-2xl text-blue-900 my-5">
+          <h3 className="text-2xl text-blue-900 dark:text-white my-5">
             {t("operationSection3")}
           </h3>
           <p className="text-left row-span-1 leading-snug">

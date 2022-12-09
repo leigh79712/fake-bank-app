@@ -5,7 +5,7 @@ const JoinToday = () => {
   const { t } = useTranslation("home");
 
   return (
-    <section className="text-center my-20">
+    <section className="text-center my-28">
       <h2 className="text-5xl mb-16">{t("joinToDay")}</h2>
       <Link
         href="/register"
