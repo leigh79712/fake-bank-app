@@ -1,11 +1,20 @@
 import express from "express";
+import next from "next";
 import session from "express-session";
+import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 
-const server = async () => {
-  const app = express();
+const dev = process.env.NODE_ENV !== "production";
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
+app.prepare().then(() => {
+  const server = express();
+
+  dotenv.config({ path: ".env.local" });
+
+  mongoose.set("strictQuery", false);
   mongoose
     .connect(process.env.MONGODB_URI as string)
     .then(() => {
@@ -15,9 +24,9 @@ const server = async () => {
       console.log(err);
     });
 
-  app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+  server.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
-  app.use(
+  server.use(
     session({
       name: "uid",
       cookie: {
@@ -34,11 +43,11 @@ const server = async () => {
     })
   );
 
-  app.listen(3000, () => {
+  server.all("*", (req, res) => {
+    return handle(req, res);
+  });
+
+  server.listen(3000, () => {
     console.log("Server started on localhost: 3000");
   });
-};
-
-server().catch((err) => {
-  console.error(err);
 });
