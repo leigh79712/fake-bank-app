@@ -15,5 +15,6 @@
   "wrongFormat": "密碼格式錯誤",
   "passwordFormat": "長度至少6個字母，1個英文大寫及符號",
   "noUsername": "沒有此帳號",
-  "errorPassword": "密碼錯誤"
+  "errorPassword": "密碼錯誤",
+  "hello": "您好！"
 }

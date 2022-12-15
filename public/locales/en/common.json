@@ -15,5 +15,6 @@
   "wrongFormat": "Wrong password format",
   "passwordFormat": "At least 6 letters, 1 uppercase and symbol",
   "noUsername": "Can't find username",
-  "errorPassword": "Wrong password"
+  "errorPassword": "Wrong password",
+  "hello": "Hello！"
 }
