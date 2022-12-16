@@ -1,7 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { withIronSessionApiRoute } from "iron-session/next";
 import dbConnect from "utils/dbConnect";
-import { sessionOptions } from "utils/session";
 import User from "models/User";
 import bcrypt from "bcrypt";
 // import jwt from "jsonwebtoken";
@@ -38,14 +36,11 @@ const loginRoute = async (req: NextApiRequest, res: NextApiResponse) => {
           //   { expiresIn: "14d" }
           // );
 
-          req.session.user = user;
-          await req.session.save();
-
           res.status(200).json({
             user,
           });
 
-          res.redirect("/dashboard");
+          return res.status(400).json({ success: false });
         } else {
           return res.json({
             status: 400,
@@ -62,4 +57,4 @@ const loginRoute = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default withIronSessionApiRoute(loginRoute, sessionOptions);
+export default loginRoute;

@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Input from "../common/Input";
 import Link from "next/link";
 import axios from "axios";
@@ -6,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 
 const RegisterForm = () => {
-  const router = useRouter();
   const { t } = useTranslation(["common", "register"]);
   const {
     setError,
@@ -31,13 +29,6 @@ const RegisterForm = () => {
         message,
       });
     }
-
-    if (res.token) {
-      localStorage.setItem("token", res.token);
-      localStorage.setItem("username", res.username);
-    }
-
-    router.push("/dashboard");
   };
 
   return (

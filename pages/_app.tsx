@@ -1,4 +1,5 @@
 import { StrictMode, useState } from "react";
+import { SessionProvider } from "next-auth/react";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import {
@@ -10,7 +11,7 @@ import "../styles/globals.css";
 import { appWithTranslation } from "next-i18next";
 import { ThemeContext, useTheme } from "hooks/useTheme";
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   const [queryClient] = useState(() => new QueryClient());
   const { theme, type, handleTheme } = useTheme();
 
@@ -35,7 +36,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <ThemeContext.Provider value={{ theme, type, handleTheme }}>
-            <Component {...pageProps} />
+            <SessionProvider session={session}>
+              <Component {...pageProps} />
+            </SessionProvider>
           </ThemeContext.Provider>
         </Hydrate>
       </QueryClientProvider>

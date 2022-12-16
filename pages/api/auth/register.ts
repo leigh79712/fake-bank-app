@@ -3,10 +3,7 @@ import dbConnect from "utils/dbConnect";
 import User from "models/User";
 import bcrypt from "bcrypt";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+const register = async (req: NextApiRequest, res: NextApiResponse) => {
   const { method } = req;
 
   await dbConnect();
@@ -19,7 +16,7 @@ export default async function handler(
         // const regex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{6,30}$/;
 
         // if (!regex.test(password)) {
-        //   return res
+        //   res
         //     .status(200)
         //     .json({ status: 400, type: "password", message: "wrongFormat" });
         // }
@@ -30,9 +27,9 @@ export default async function handler(
         });
 
         user.save();
-        res.redirect("/dashboard");
+        return res.status(200).json({ status: 200 });
       } catch (error) {
-        return res
+        res
           .status(200)
           .json({ status: 400, type: "username", message: "hadUsername" });
       }
@@ -40,4 +37,6 @@ export default async function handler(
     default:
       return res.status(400).json({ success: false });
   }
-}
+};
+
+export default register;
