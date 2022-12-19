@@ -76,7 +76,7 @@ const Header = () => {
               className="mr-5"
               onClick={() => signOut({ callbackUrl: "/" })}
             >
-              {t("hello")}
+              {t("hello")} {session.user.username}
             </span>
           ) : (
             <Link href="/login" className="mr-5">
