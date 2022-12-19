@@ -1,33 +1,22 @@
+import { signIn } from "next-auth/react";
 import Input from "../common/Input";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 
 const Form = () => {
   const { t } = useTranslation(["common", "login"]);
   const {
-    setError,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const login = async (data: any) => {
-    const { data: res } = await axios({
-      method: "post",
-      url: "/api/user/login",
-      data,
+  const login = (data: any) => {
+    signIn("credentials", {
+      ...data,
+      callbackUrl: "/dashboard",
     });
-
-    if (res.status === 400) {
-      const type = res.type;
-      const message = t(res.message);
-
-      setError(type, {
-        message,
-      });
-    }
   };
 
   return (

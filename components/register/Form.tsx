@@ -16,7 +16,7 @@ const RegisterForm = () => {
   const createUser = async (data: any) => {
     const { data: res } = await axios({
       method: "post",
-      url: "/api/user/register",
+      url: "/api/auth/register",
       data,
     });
 

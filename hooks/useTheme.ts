@@ -25,9 +25,11 @@ export const useTheme = () => {
     ) {
       document.documentElement.classList.add("dark");
       setType("dark");
+      setTheme("Dark");
     } else {
       document.documentElement.classList.remove("dark");
       setType("light");
+      setTheme("Light");
     }
   }, [theme]);
 

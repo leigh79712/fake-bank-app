@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
@@ -22,27 +23,13 @@ const themes = [
 ];
 
 const Header = () => {
+  const { data: session } = useSession();
   const [show, setShow] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
-  const [username, setUsername] = useState("");
   const router = useRouter();
   const { useThemeContext } = useTheme();
   const { theme, type, handleTheme } = useThemeContext;
   const { t } = useTranslation("common");
   const changeLocale = router.locale === "tw" ? "en" : "tw";
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const name = localStorage.getItem("username") || "";
-
-    if (token) {
-      setIsLogin(true);
-      setUsername(name);
-    } else {
-      setIsLogin(false);
-      setUsername(name);
-    }
-  }, [isLogin]);
 
   const handleShow = () => {
     setShow(!show);
@@ -84,9 +71,12 @@ const Header = () => {
           </Link> */}
         </nav>
         <div className="text-right flex items-center">
-          {isLogin ? (
-            <span className="mr-5">
-              {t("hello")} {username}
+          {session ? (
+            <span
+              className="mr-5"
+              onClick={() => signOut({ callbackUrl: "/" })}
+            >
+              {t("hello")}
             </span>
           ) : (
             <Link href="/login" className="mr-5">
