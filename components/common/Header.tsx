@@ -5,39 +5,48 @@ import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useTheme } from "hooks/useTheme";
-import { System, Sun, Moon } from "components/common/Icons";
-
-const themes = [
-  {
-    title: "System",
-    Icon: System,
-  },
-  {
-    title: "Light",
-    Icon: Sun,
-  },
-  {
-    title: "Dark",
-    Icon: Moon,
-  },
-];
+import { System, Sun, Moon } from "./Icons";
+import Dropdown from "./Dropdown";
 
 const Header = () => {
   const { data: session } = useSession();
-  const [show, setShow] = useState(false);
   const router = useRouter();
   const { useThemeContext } = useTheme();
   const { theme, type, handleTheme } = useThemeContext;
   const { t } = useTranslation("common");
   const changeLocale = router.locale === "tw" ? "en" : "tw";
 
-  const handleShow = () => {
-    setShow(!show);
-  };
+  const memberMenu = [
+    {
+      text: t("memberCenter"),
+      link: "/dashboard",
+    },
+    {
+      text: t("logout"),
+      event: signOut,
+    },
+  ];
+
+  const themes = [
+    {
+      text: "System",
+      Icon: System,
+      event: () => setTheme("System"),
+    },
+    {
+      text: "Light",
+      Icon: Sun,
+      event: () => setTheme("Light"),
+    },
+    {
+      text: "Dark",
+      Icon: Moon,
+      event: () => setTheme("Dark"),
+    },
+  ];
 
   const setTheme = (theme: string) => {
     handleTheme(theme);
-    setShow(!show);
   };
 
   const getTheme = (theme: string) => {
@@ -72,12 +81,11 @@ const Header = () => {
         </nav>
         <div className="text-right flex items-center">
           {session ? (
-            <span
+            <Dropdown
               className="mr-5"
-              onClick={() => signOut({ callbackUrl: "/" })}
-            >
-              {t("hello")} {session.user.username}
-            </span>
+              selected={`${t("hello")} ${session.user.username}`}
+              items={memberMenu}
+            />
           ) : (
             <Link href="/login" className="mr-5">
               {t("login")}
@@ -86,29 +94,7 @@ const Header = () => {
           <Link href={router.pathname} locale={changeLocale} className="mr-5">
             {t("translateTo")}
           </Link>
-          <div className="relative">
-            <div className="cursor-pointer" onClick={handleShow}>
-              {getTheme(theme)}
-            </div>
-            {show && (
-              <div className="mt-1 pointer-events-auto w-36 space-y-1 rounded-lg bg-white dark:bg-slate-900 p-3 text-[0.8125rem] font-medium leading-6 text-slate-700 shadow-xl shadow-black/5 ring-1 ring-slate-700/10 absolute left-1/2 -translate-x-1/2">
-                {themes.map((theme) => (
-                  <div
-                    className="flex rounded-[10px] p-1 cursor-pointer"
-                    key={theme.title}
-                    onClick={() => setTheme(theme.title)}
-                  >
-                    <div className="flex w-6 h-6 flex-none items-center justify-center rounded-md bg-white dark:bg-slate-900 shadow ring-1 ring-slate-900/10">
-                      <theme.Icon className="w-4 h-4 fill-cyan-500 dark:fill-white" />
-                    </div>
-                    <div className="ml-3 text-black dark:text-white">
-                      {theme.title}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          <Dropdown selected={getTheme(theme)} items={themes} />
         </div>
       </div>
     </header>

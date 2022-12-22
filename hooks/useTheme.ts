@@ -18,6 +18,15 @@ export const useTheme = () => {
   const useThemeContext = useContext(ThemeContext);
 
   useEffect(() => {
+    if ("theme" in localStorage) {
+      const str2 = localStorage.theme.slice(1);
+      setTheme(localStorage.theme.charAt(0).toUpperCase() + str2);
+    } else {
+      setTheme("System");
+    }
+  }, []);
+
+  useEffect(() => {
     if (
       localStorage.theme === "dark" ||
       (!("theme" in localStorage) &&
@@ -25,11 +34,9 @@ export const useTheme = () => {
     ) {
       document.documentElement.classList.add("dark");
       setType("dark");
-      setTheme("Dark");
     } else {
       document.documentElement.classList.remove("dark");
       setType("light");
-      setTheme("Light");
     }
   }, [theme]);
 

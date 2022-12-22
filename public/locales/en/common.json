@@ -16,5 +16,11 @@
   "passwordFormat": "At least 6 letters, 1 uppercase and symbol",
   "noUsername": "Can't find username",
   "errorPassword": "Wrong password",
-  "hello": "Hello！"
+  "hello": "Hello！",
+  "firstname": "First Name",
+  "lastname": "Last Name",
+  "email": "E-mail",
+  "confirm": "Confirm",
+  "memberCenter": "Manage your Account",
+  "logout": "Log out"
 }

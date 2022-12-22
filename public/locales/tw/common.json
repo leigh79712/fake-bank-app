@@ -16,5 +16,11 @@
   "passwordFormat": "長度至少6個字母，1個英文大寫及符號",
   "noUsername": "沒有此帳號",
   "errorPassword": "密碼錯誤",
-  "hello": "您好！"
+  "hello": "您好！",
+  "firstname": "名字",
+  "lastname": "姓氏",
+  "email": "電子信箱",
+  "confirm": "確認",
+  "memberCenter": "會員中心",
+  "logout": "登出"
 }

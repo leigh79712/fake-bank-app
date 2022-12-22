@@ -25,7 +25,11 @@ const Layout = ({ className, children }: LayoutProps) => {
         <meta property="og:title" content={titleText} />
       </Head>
       <Header />
-      <main className={`min-h-[calc(100vh-145px)] ${className}`}>
+      <main
+        className={`min-h-[calc(100vh-145px)]${
+          className ? ` ${className}` : ""
+        }`}
+      >
         {children}
       </main>
       <Footer />
