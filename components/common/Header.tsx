@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useTheme } from "hooks/useTheme";
-import { System, Sun, Moon } from "./Icons";
+import { System, Sun, Moon, GlobeAlt } from "./Icons";
 import Dropdown from "./Dropdown";
 
 const Header = () => {
@@ -14,7 +14,6 @@ const Header = () => {
   const { useThemeContext } = useTheme();
   const { theme, type, handleTheme } = useThemeContext;
   const { t } = useTranslation("common");
-  const changeLocale = router.locale === "tw" ? "en" : "tw";
 
   const memberMenu = [
     {
@@ -24,6 +23,19 @@ const Header = () => {
     {
       text: t("logout"),
       event: signOut,
+    },
+  ];
+
+  const locales = [
+    {
+      text: "English",
+      link: router.pathname,
+      locale: "en",
+    },
+    {
+      text: "繁體中文",
+      link: router.pathname,
+      locale: "tw",
     },
   ];
 
@@ -92,9 +104,12 @@ const Header = () => {
               {t("login")}
             </Link>
           )}
-          <Link href={router.pathname} locale={changeLocale} className="mr-5">
-            {t("translateTo")}
-          </Link>
+          <Dropdown
+            selected={
+              <GlobeAlt className="w-5 h-5 mr-5 stroke-slate-800 dark:stroke-white" />
+            }
+            items={locales}
+          />
           <Dropdown selected={getTheme(theme)} items={themes} />
         </div>
       </div>

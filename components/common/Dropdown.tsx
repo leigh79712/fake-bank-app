@@ -37,11 +37,7 @@ const Dropdown: React.FC<DropdownProps> = ({ selected, items, className }) => {
                   <item.Icon className="w-4 h-4 fill-slate-900 dark:fill-white" />
                 </div>
               ) : null}
-              {item.link ? (
-                <Link href={item.link}>{item.text}</Link>
-              ) : (
-                <div>{item.text}</div>
-              )}
+              {item.link ? <LinkLocale {...item} /> : <div>{item.text}</div>}
             </li>
           ))}
         </ul>
@@ -49,5 +45,20 @@ const Dropdown: React.FC<DropdownProps> = ({ selected, items, className }) => {
     </div>
   );
 };
+
+interface LinkLocaleProps {
+  link: string;
+  text: string;
+  locale?: string;
+}
+
+const LinkLocale: React.FC<LinkLocaleProps> = ({ link, text, locale }) =>
+  locale ? (
+    <Link href={link} locale={locale}>
+      {text}
+    </Link>
+  ) : (
+    <Link href={link}>{text}</Link>
+  );
 
 export default Dropdown;
