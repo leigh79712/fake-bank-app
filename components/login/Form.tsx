@@ -15,7 +15,6 @@ const Form = () => {
   const login = (data: any) => {
     signIn("credentials", {
       ...data,
-      callbackUrl: "/dashboard",
     });
   };
 

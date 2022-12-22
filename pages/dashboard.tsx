@@ -4,10 +4,8 @@ import UserForm from "../components/dashboard/UserForm";
 
 const dashboard = () => {
   return (
-    <Layout>
-      <div className="container mx-auto">
-        <UserForm />
-      </div>
+    <Layout className="flex justify-center items-center">
+      <UserForm />
     </Layout>
   );
 };
