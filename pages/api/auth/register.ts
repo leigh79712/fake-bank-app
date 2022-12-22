@@ -29,7 +29,7 @@ const register = async (req: NextApiRequest, res: NextApiResponse) => {
         user.save();
         return res.status(200).json({ status: 200 });
       } catch (error) {
-        res
+        return res
           .status(200)
           .json({ status: 400, type: "username", message: "hadUsername" });
       }

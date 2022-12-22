@@ -1,13 +1,13 @@
-import { useSession } from "next-auth/react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Layout from "../components/common/Layout";
+import UserForm from "../components/dashboard/UserForm";
 
 const dashboard = () => {
-  const { data: session } = useSession();
-
   return (
     <Layout>
-      <div className="container mx-auto">Dashboard</div>
+      <div className="container mx-auto">
+        <UserForm />
+      </div>
     </Layout>
   );
 };
@@ -19,7 +19,7 @@ interface getStaticPropsTypes {
 export const getStaticProps = async ({ locale }: getStaticPropsTypes) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
+      ...(await serverSideTranslations(locale, ["common", "dashboard"])),
     },
   };
 };

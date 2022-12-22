@@ -7,6 +7,7 @@ interface InputProps {
     autoComplete?: string;
     placeholder?: string;
   };
+  value?: string;
   label?: string;
   className?: string;
 }
@@ -19,6 +20,7 @@ const Input: React.FC<InputProps> = (props) => {
         id={props.attr.name}
         className="block rounded-md h-12 w-full border-gray-300 border px-3 text-black"
         {...props.attr}
+        defaultValue={props.value}
       />
     </div>
   );
