@@ -38,6 +38,7 @@ const About = () => {
         className="inline my-10"
         src={`/images/logo-${type}.svg`}
         alt="Petit Bank"
+        priority
         width={200}
         height={40}
       />

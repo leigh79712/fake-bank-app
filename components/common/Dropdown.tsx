@@ -23,6 +23,7 @@ const Dropdown: React.FC<DropdownProps> = ({ selected, items, className }) => {
         <ul className="mt-1 whitespace-nowrap text-left pointer-events-auto space-y-1 rounded-lg bg-white dark:bg-slate-900 p-3 text-[0.8125rem] font-medium leading-6 text-slate-700 shadow-xl shadow-black/5 ring-1 ring-slate-700/10 absolute left-1/2 -translate-x-1/2">
           {items.map((item) => (
             <li
+              key={item.text}
               className="text-black dark:text-white cursor-pointer flex"
               onClick={() => {
                 if (item.event) {
