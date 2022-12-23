@@ -3,8 +3,10 @@ import Input from "../common/Input";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 const Form = () => {
+  const router = useRouter();
   const { t } = useTranslation(["common", "login"]);
   const {
     register,
@@ -15,6 +17,7 @@ const Form = () => {
   const login = (data: any) => {
     signIn("credentials", {
       ...data,
+      callbackUrl: router.query.callbackUrl || "/",
     });
   };
 

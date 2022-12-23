@@ -82,15 +82,15 @@ const Header = () => {
           />
         </Link>
         <nav className="text-center">
-          {/* <Link className="mx-10" href="/">
-            Home
+          <Link className="mx-10" href="/transfer">
+            {t("transfer")}
           </Link>
-          <Link className="mx-10" href="/feature">
-            Feature
+          <Link className="mx-10" href="/deposit">
+            {t("deposit")}
           </Link>
-          <Link className="mx-10" href="/operations">
-            Operations
-          </Link> */}
+          <Link className="mx-10" href="/withdraw">
+            {t("withdraw")}
+          </Link>
         </nav>
         <div className="text-right flex items-center">
           {session ? (

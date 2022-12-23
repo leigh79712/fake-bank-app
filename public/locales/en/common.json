@@ -20,6 +20,9 @@
   "lastname": "Last Name",
   "email": "E-mail",
   "confirm": "Confirm",
-  "memberCenter": "Manage your account",
-  "logout": "Log out"
+  "memberCenter": "My account",
+  "logout": "Log out",
+  "transfer": "Transfer",
+  "deposit": "Deposit",
+  "withdraw": "Withdraw"
 }
