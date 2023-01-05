@@ -18,8 +18,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const user = await User.findOne({ username });
 
         const outputUser = {
-          firstname: user.firstname,
-          lastname: user.lastname,
+          firstName: user.firstName,
+          lastName: user.lastName,
           email: user.email,
         };
 

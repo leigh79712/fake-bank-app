@@ -43,15 +43,15 @@ const UserForm = () => {
     <div className="container mx-auto w-96">
       <form onSubmit={handleSubmit(mutation.mutate)}>
         <Input
-          attr={{ ...register("firstname"), type: "text" }}
-          label={t("firstname")}
-          value={data.firstname}
+          attr={{ ...register("firstName"), type: "text" }}
+          label={t("firstName")}
+          value={data.firstName}
         />
         <Input
-          attr={{ ...register("lastname"), type: "text" }}
-          label={t("lastname")}
+          attr={{ ...register("lastName"), type: "text" }}
+          label={t("lastName")}
           className="mt-5"
-          value={data.lastname}
+          value={data.lastName}
         />
         <Input
           attr={{ ...register("email"), type: "email" }}

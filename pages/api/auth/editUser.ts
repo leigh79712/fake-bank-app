@@ -10,14 +10,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { username } = token.user;
 
   if (method === "POST") {
-    const { firstname, lastname, email } = req.body;
+    const { firstName, lastName, email } = req.body;
 
     await User.updateOne(
       { username },
       {
         $set: {
-          firstname,
-          lastname,
+          firstName,
+          lastName,
           email,
         },
       }

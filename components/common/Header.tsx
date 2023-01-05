@@ -21,6 +21,18 @@ const Header = () => {
       link: "/dashboard",
     },
     {
+      text: t("transfer"),
+      link: "/transfer",
+    },
+    {
+      text: t("deposit"),
+      link: "/deposit",
+    },
+    {
+      text: t("withdraw"),
+      link: "/withdraw",
+    },
+    {
       text: t("logout"),
       event: signOut,
     },
@@ -81,17 +93,7 @@ const Header = () => {
             height={40}
           />
         </Link>
-        <nav className="text-center">
-          <Link className="mx-10" href="/transfer">
-            {t("transfer")}
-          </Link>
-          <Link className="mx-10" href="/deposit">
-            {t("deposit")}
-          </Link>
-          <Link className="mx-10" href="/withdraw">
-            {t("withdraw")}
-          </Link>
-        </nav>
+
         <div className="text-right flex items-center">
           {session ? (
             <Dropdown
