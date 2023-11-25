@@ -1,9 +1,0 @@
-.isValued,
-.isValued:focus {
-  background-color: rgba(255, 7, 48, 0.8);
-  color: rgba(255, 7, 48, 0.8);
-}
-
-.valued {
-  background-color: rgba(255, 255, 255, 0.4);
-}

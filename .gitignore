@@ -74,6 +74,7 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+.env.local
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -108,3 +109,6 @@ dist
 
 # google key
 *google-sheet-key.json
+
+# Next.js
+next-env.d.ts

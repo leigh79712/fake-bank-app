@@ -1,16 +1,10 @@
-const nextConfig = {
-  i18n: {
-    locales: ["en-US", "zh-TW"],
-    defaultLocale: "en-US",
-  },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: ["@svgr/webpack"],
-    });
-    return config;
-  },
-};
+const { i18n } = require("./next-i18next.config");
 
-module.exports = nextConfig;
+module.exports = {
+  reactStrictMode: true,
+  images: {
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
+  i18n,
+};
